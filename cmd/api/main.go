@@ -120,6 +120,7 @@ func main() {
 	// Global middlewares
 	r.Use(middlewares.LoggingMiddleware(logger.Logger))
 	r.Use(middlewares.CORSMiddleware(cfg.CORSOrigins...))
+	r.Static("/assets", "./assets")
 	authHandler.RegisterWebRoutes(r)
 
 	r.GET("/health", healthHandler.HealthCheck)
