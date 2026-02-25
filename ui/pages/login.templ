@@ -57,7 +57,12 @@ templ Login(props LoginProps) {
                             }
                         }
                         @card.Content(card.ContentProps{Class: "space-y-5"}) {
-                            <form action="/api/v1/login" method="post" class="space-y-4">
+                            <form
+                                class="space-y-4"
+                                x-data="loginForm()"
+                                @submit.prevent="submit"
+                            >
+                                <div x-cloak x-show="error" class="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive" x-text="error"></div>
                                 @form.Item() {
                                     @form.Label(form.LabelProps{For: "email"}) {
                                         Email
@@ -67,6 +72,9 @@ templ Login(props LoginProps) {
                                         Name:        "email",
                                         Type:        input.TypeEmail,
                                         Placeholder: "you@example.com",
+                                        Attributes: templ.Attributes{
+                                            "x-model": "form.email",
+                                        },
                                     })
                                 }
 
@@ -88,12 +96,15 @@ templ Login(props LoginProps) {
                                         Name:        "password",
                                         Type:        input.TypePassword,
                                         Placeholder: "••••••••",
+                                        Attributes: templ.Attributes{
+                                            "x-model": "form.password",
+                                        },
                                     })
                                 }
 
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center gap-2">
-                                        @checkbox.Checkbox(checkbox.Props{ID: "remember", Name: "remember"})
+                                        @checkbox.Checkbox(checkbox.Props{ID: "remember", Name: "remember", Attributes: templ.Attributes{"x-model": "form.remember"}})
                                         @form.Label(form.LabelProps{For: "remember", Class: "text-sm font-normal text-muted-foreground"}) {
                                             Remember me
                                         }
@@ -107,12 +118,14 @@ templ Login(props LoginProps) {
                                     }
                                 </div>
 
-                                @button.Button(button.Props{
-                                    Type:      button.TypeSubmit,
-                                    FullWidth: true,
-                                }) {
-                                    Sign in
-                                }
+                                <button
+                                    type="submit"
+                                    :disabled="loading"
+                                    class="inline-flex h-9 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-xs transition-all hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50"
+                                >
+                                    <span x-show="!loading">Sign in</span>
+                                    <span x-show="loading">Signing in...</span>
+                                </button>
                             </form>
 
                             @separator.Separator() {
@@ -134,5 +147,51 @@ templ Login(props LoginProps) {
                 </div>
             </div>
         </div>
+
+        <script nonce={ templ.GetNonce(ctx) }>
+            function loginForm() {
+                return {
+                    form: {
+                        email: "",
+                        password: "",
+                        remember: false,
+                    },
+                    loading: false,
+                    error: "",
+                    async submit() {
+                        this.error = "";
+                        this.loading = true;
+                        try {
+                            const response = await fetch("/api/v1/login", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    email: this.form.email,
+                                    password: this.form.password,
+                                }),
+                            });
+
+                            const payload = await response.json();
+                            if (!response.ok) {
+                                this.error = payload.error || "Unable to sign in";
+                                return;
+                            }
+
+                            if (payload.token) {
+                                localStorage.setItem("auth_token", payload.token);
+                            }
+
+                            window.location.href = "/";
+                        } catch (_err) {
+                            this.error = "Network error. Please try again.";
+                        } finally {
+                            this.loading = false;
+                        }
+                    },
+                }
+            }
+        </script>
     }
 }

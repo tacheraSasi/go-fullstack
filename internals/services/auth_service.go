@@ -1,7 +1,11 @@
 package services
 
 import (
+	"crypto/rand"
+	"encoding/hex"
+	"errors"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/tacheraSasi/go-api-starter/internals/models"
@@ -14,6 +18,8 @@ type AuthService interface {
 	GetUserByID(id string) (*models.User, error)
 	GetUserByEmail(email string) (*models.User, error)
 	Logout(token string, expiresAt time.Time) error
+	RequestPasswordReset(email string) (string, error)
+	ResetPassword(token, password string) error
 }
 
 type authService struct {
@@ -58,4 +64,58 @@ func (s *authService) GetUserByEmail(email string) (*models.User, error) {
 
 func (s *authService) Logout(token string, expiresAt time.Time) error {
 	return s.tokenService.BlacklistToken(token, expiresAt)
+}
+
+func (s *authService) RequestPasswordReset(email string) (string, error) {
+	user, err := s.repo.GetUserByEmail(email)
+	if err != nil {
+		return "", nil
+	}
+
+	resetToken, err := generateSecureToken(32)
+	if err != nil {
+		return "", err
+	}
+
+	expiresAt := time.Now().Add(30 * time.Minute)
+	if err := s.tokenService.CreatePasswordResetToken(user.ID, resetToken, expiresAt); err != nil {
+		return "", err
+	}
+
+	return resetToken, nil
+}
+
+func (s *authService) ResetPassword(token, password string) error {
+	resetToken, err := s.tokenService.GetValidPasswordResetToken(token)
+	if err != nil {
+		return errors.New("invalid or expired reset token")
+	}
+
+	user, err := s.repo.GetUserByID(strconv.FormatUint(uint64(resetToken.UserID), 10))
+	if err != nil {
+		return err
+	}
+
+	user.Password = password
+	if err := user.HashPassword(); err != nil {
+		return err
+	}
+
+	if err := s.repo.UpdateUser(user); err != nil {
+		return err
+	}
+
+	if err := s.tokenService.MarkPasswordResetTokenUsed(resetToken); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func generateSecureToken(size int) (string, error) {
+	bytes := make([]byte, size)
+	if _, err := rand.Read(bytes); err != nil {
+		return "", err
+	}
+	return hex.EncodeToString(bytes), nil
 }

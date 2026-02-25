@@ -60,7 +60,52 @@ func (h *AuthHandler) ForgotPasswordPage(c *gin.Context) {
 	templ.Handler(pages.ForgotPassword(pages.ForgotPasswordProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
 }
 func (h *AuthHandler) ResetPasswordPage(c *gin.Context) {
-	templ.Handler(pages.ResetPassword(pages.ResetPasswordProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
+	templ.Handler(pages.ResetPassword(pages.ResetPasswordProps{AppName: "Go API Starter", Token: c.Query("token")})).ServeHTTP(c.Writer, c.Request)
+}
+
+func (h *AuthHandler) ForgotPassword(c *gin.Context) {
+	var reqDto dtos.ForgotPasswordRequest
+	h.ValidateRequest(c, &reqDto)
+	if c.IsAborted() {
+		return
+	}
+
+	token, err := h.service.RequestPasswordReset(reqDto.Email)
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Failed to create password reset request"})
+		return
+	}
+
+	response := gin.H{
+		"message": "If your email exists, a reset link has been generated",
+	}
+
+	if token != "" {
+		response["reset_token"] = token
+		response["reset_url"] = "/auth/reset-password?token=" + token
+	}
+
+	c.JSON(200, response)
+}
+
+func (h *AuthHandler) ResetPassword(c *gin.Context) {
+	var reqDto dtos.ResetPasswordRequest
+	h.ValidateRequest(c, &reqDto)
+	if c.IsAborted() {
+		return
+	}
+
+	if reqDto.Password != reqDto.PasswordConfirmation {
+		c.JSON(400, gin.H{"error": "Password confirmation does not match"})
+		return
+	}
+
+	if err := h.service.ResetPassword(reqDto.Token, reqDto.Password); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(200, gin.H{"message": "Password reset successful"})
 }
 
 func (h *AuthHandler) Register(c *gin.Context) {

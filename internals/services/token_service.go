@@ -10,6 +10,9 @@ import (
 type TokenService interface {
 	BlacklistToken(token string, expiresAt time.Time) error
 	IsTokenBlacklisted(token string) (bool, error)
+	CreatePasswordResetToken(userID uint, token string, expiresAt time.Time) error
+	GetValidPasswordResetToken(token string) (*models.PasswordResetToken, error)
+	MarkPasswordResetTokenUsed(token *models.PasswordResetToken) error
 }
 
 type tokenService struct {
@@ -30,4 +33,21 @@ func (s *tokenService) BlacklistToken(token string, expiresAt time.Time) error {
 
 func (s *tokenService) IsTokenBlacklisted(token string) (bool, error) {
 	return s.repo.IsTokenBlacklisted(token)
+}
+
+func (s *tokenService) CreatePasswordResetToken(userID uint, token string, expiresAt time.Time) error {
+	resetToken := &models.PasswordResetToken{
+		UserID:    userID,
+		Token:     token,
+		ExpiresAt: expiresAt,
+	}
+	return s.repo.CreatePasswordResetToken(resetToken)
+}
+
+func (s *tokenService) GetValidPasswordResetToken(token string) (*models.PasswordResetToken, error) {
+	return s.repo.GetValidPasswordResetToken(token)
+}
+
+func (s *tokenService) MarkPasswordResetTokenUsed(token *models.PasswordResetToken) error {
+	return s.repo.MarkPasswordResetTokenUsed(token)
 }

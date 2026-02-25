@@ -31,7 +31,13 @@ templ Register(props RegisterProps) {
                             }
                         }
                         @card.Content(card.ContentProps{Class: "space-y-5"}) {
-                            <form action="/api/v1/register" method="post" class="space-y-4">
+                            <form
+                                class="space-y-4"
+                                x-data="registerForm()"
+                                @submit.prevent="submit"
+                            >
+                                <div x-cloak x-show="error" class="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive" x-text="error"></div>
+                                <div x-cloak x-show="success" class="rounded-md border border-primary/30 bg-primary/10 px-3 py-2 text-sm text-primary" x-text="success"></div>
                                 @form.Item() {
                                     @form.Label(form.LabelProps{For: "name"}) {
                                         Full name
@@ -40,6 +46,9 @@ templ Register(props RegisterProps) {
                                         ID:          "name",
                                         Name:        "name",
                                         Placeholder: "John Doe",
+                                        Attributes: templ.Attributes{
+                                            "x-model": "form.name",
+                                        },
                                     })
                                 }
 
@@ -52,6 +61,9 @@ templ Register(props RegisterProps) {
                                         Name:        "email",
                                         Type:        input.TypeEmail,
                                         Placeholder: "you@example.com",
+                                        Attributes: templ.Attributes{
+                                            "x-model": "form.email",
+                                        },
                                     })
                                 }
 
@@ -64,25 +76,45 @@ templ Register(props RegisterProps) {
                                         Name:        "password",
                                         Type:        input.TypePassword,
                                         Placeholder: "Create a secure password",
+                                        Attributes: templ.Attributes{
+                                            "x-model": "form.password",
+                                        },
                                     })
                                     @form.Description() {
                                         Use at least 8 characters.
                                     }
                                 }
 
+                                @form.Item() {
+                                    @form.Label(form.LabelProps{For: "password_confirmation"}) {
+                                        Confirm password
+                                    }
+                                    @input.Input(input.Props{
+                                        ID:          "password_confirmation",
+                                        Name:        "password_confirmation",
+                                        Type:        input.TypePassword,
+                                        Placeholder: "Confirm your password",
+                                        Attributes: templ.Attributes{
+                                            "x-model": "form.passwordConfirmation",
+                                        },
+                                    })
+                                }
+
                                 <div class="flex items-start gap-2 rounded-md border p-3">
-                                    @checkbox.Checkbox(checkbox.Props{ID: "terms", Name: "terms"})
+                                    @checkbox.Checkbox(checkbox.Props{ID: "terms", Name: "terms", Attributes: templ.Attributes{"x-model": "form.acceptTerms"}})
                                     @form.Label(form.LabelProps{For: "terms", Class: "text-sm font-normal leading-5 text-muted-foreground"}) {
                                         I agree to the Terms of Service and Privacy Policy.
                                     }
                                 </div>
 
-                                @button.Button(button.Props{
-                                    Type:      button.TypeSubmit,
-                                    FullWidth: true,
-                                }) {
-                                    Create account
-                                }
+                                <button
+                                    type="submit"
+                                    :disabled="loading"
+                                    class="inline-flex h-9 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-xs transition-all hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50"
+                                >
+                                    <span x-show="!loading">Create account</span>
+                                    <span x-show="loading">Creating account...</span>
+                                </button>
                             </form>
 
                             @separator.Separator() {
@@ -130,5 +162,66 @@ templ Register(props RegisterProps) {
                 </div>
             </div>
         </div>
+
+        <script nonce={ templ.GetNonce(ctx) }>
+            function registerForm() {
+                return {
+                    form: {
+                        name: "",
+                        email: "",
+                        password: "",
+                        passwordConfirmation: "",
+                        acceptTerms: false,
+                    },
+                    loading: false,
+                    error: "",
+                    success: "",
+                    async submit() {
+                        this.error = "";
+                        this.success = "";
+
+                        if (!this.form.acceptTerms) {
+                            this.error = "Please accept the terms to continue.";
+                            return;
+                        }
+
+                        if (this.form.password !== this.form.passwordConfirmation) {
+                            this.error = "Password confirmation does not match.";
+                            return;
+                        }
+
+                        this.loading = true;
+                        try {
+                            const response = await fetch("/api/v1/register", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    name: this.form.name,
+                                    email: this.form.email,
+                                    password: this.form.password,
+                                }),
+                            });
+
+                            const payload = await response.json();
+                            if (!response.ok) {
+                                this.error = payload.error || "Unable to register";
+                                return;
+                            }
+
+                            this.success = "Account created successfully. Redirecting to login...";
+                            setTimeout(() => {
+                                window.location.href = "/auth/login";
+                            }, 900);
+                        } catch (_err) {
+                            this.error = "Network error. Please try again.";
+                        } finally {
+                            this.loading = false;
+                        }
+                    },
+                }
+            }
+        </script>
     }
 }

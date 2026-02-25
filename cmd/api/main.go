@@ -71,6 +71,7 @@ func main() {
 		&models.Invoice{},
 		&models.InvoiceItem{},
 		&models.BlacklistedToken{},
+		&models.PasswordResetToken{},
 	)
 	if err != nil {
 		log.Fatal("Auto migration failed:", err)
@@ -136,6 +137,8 @@ func main() {
 	{
 		public.POST("/login", authHandler.Login)
 		public.POST("/register", authHandler.Register)
+		public.POST("/forgot-password", authHandler.ForgotPassword)
+		public.POST("/reset-password", authHandler.ResetPassword)
 	}
 
 	// Protected routes

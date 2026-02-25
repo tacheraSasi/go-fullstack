@@ -37,6 +37,7 @@ func main() {
 		&models.Invoice{},
 		&models.InvoiceItem{},
 		&models.BlacklistedToken{},
+		&models.PasswordResetToken{},
 	)
 	if err != nil {
 		log.Fatal("Auto migration failed:", err)
