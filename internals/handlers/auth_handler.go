@@ -26,6 +26,15 @@ func NewAuthHandler(service services.AuthService, cfg *config.Config) *AuthHandl
 	}
 }
 
+func (h *AuthHandler) RegisterWebRoutes(router *gin.Engine) {
+	authGroup := router.Group("/auth")
+	{
+		authGroup.POST("/register", h.Register)
+		authGroup.POST("/login", h.Login)
+		authGroup.POST("/logout", h.Logout)
+	}
+}
+
 // ValidateRequest validates the request body against the provided struct
 func (h *AuthHandler) ValidateRequest(c *gin.Context, obj any) {
 	dtos.Validate(c, obj)

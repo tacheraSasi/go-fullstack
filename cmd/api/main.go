@@ -19,7 +19,7 @@ import (
 	"github.com/tacheraSasi/go-api-starter/internals/services"
 	"github.com/tacheraSasi/go-api-starter/pkg/database"
 	"github.com/tacheraSasi/go-api-starter/pkg/logger"
-	"github.com/tacheraSasi/go-api-starter/views"
+	"github.com/tacheraSasi/go-api-starter/ui/pages"
 )
 
 func main() {
@@ -126,7 +126,7 @@ func main() {
 
 	//Home page
 	r.GET("/", func(c *gin.Context) {
-		templ.Handler(views.Home(views.HomeProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
+		templ.Handler(pages.Home(pages.HomeProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
 	})
 
 	// Public routes

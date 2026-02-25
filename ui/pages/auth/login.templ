@@ -1,0 +1,12 @@
+package pages
+
+type LoginProps struct {
+    AppName string
+}
+templ Login(props LoginProps) {
+    <div class="p-4">
+        <h1 class="text-2xl font-bold mb-4">Login Page</h1>
+        <p>Please enter your credentials to log in to {props.AppName}</p>
+        <!-- Add your login form here -->
+    </div>
+}
