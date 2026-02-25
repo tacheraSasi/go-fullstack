@@ -42,11 +42,12 @@ func (h *AuthHandler) HealthCheck(c *gin.Context) {
 func (h *AuthHandler) RegisterWebRoutes(router *gin.Engine) {
 	authGroup := router.Group("/auth")
 	{
-		authGroup.POST("/register", h.RegisterPage)
-		authGroup.POST("/login", h.LoginPage)
+		authGroup.GET("/register", h.RegisterPage)
+		authGroup.GET("/login", h.LoginPage)
 		authGroup.POST("/logout", h.Logout)
 	}
 }
+
 func (h *AuthHandler) RegisterPage(c *gin.Context) {
 	templ.Handler(pages.Register(pages.RegisterProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
 }
