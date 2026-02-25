@@ -49,7 +49,7 @@ func (h *AuthHandler) RegisterWebRoutes(router *gin.Engine) {
 		authGroup.POST("/logout", h.Logout)
 	}
 
-	dashboardGroup := router.Group("/dashboard")
+	dashboardGroup := router.Group("/dashboard") //TODO: will create a separate dashboard handler later
 	{
 		dashboardGroup.GET("", h.DashboardPage)
 		dashboardGroup.GET("/settings", h.DashboardSettingsPage)
