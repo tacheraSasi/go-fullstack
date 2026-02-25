@@ -1,6 +1,6 @@
-# Contributing to Go API Starter
+# Contributing to GO-FullStack
 
-Thank you for your interest in contributing to Go API Starter! This document provides guidelines and information for contributors.
+Thank you for your interest in contributing to GO-FullStack! This document provides guidelines and information for contributors.
 
 ## Code of Conduct
 

@@ -1,6 +1,6 @@
 # go-api-starter
 
-Production-ready Go API starter built with Gin + GORM, including JWT auth, RBAC, customer/invoice modules, and Docker support.
+Production-ready GO-FullStack built with Gin + GORM, including JWT auth, RBAC, customer/invoice modules, and Docker support.
 
 ## Features
 

@@ -129,7 +129,7 @@ func main() {
 
 	//Home page
 	r.GET("/", func(c *gin.Context) {
-		templ.Handler(pages.Home(pages.HomeProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
+		templ.Handler(pages.Home(pages.HomeProps{AppName: "GO-FullStack"})).ServeHTTP(c.Writer, c.Request)
 	})
 
 	// Public routes

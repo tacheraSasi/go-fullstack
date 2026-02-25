@@ -5,5 +5,5 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 DO $$
 BEGIN
-    RAISE NOTICE 'Database initialized successfully for Go API Starter';
+    RAISE NOTICE 'Database initialized successfully for GO-FullStack';
 END $$;

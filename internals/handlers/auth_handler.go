@@ -57,22 +57,22 @@ func (h *AuthHandler) RegisterWebRoutes(router *gin.Engine) {
 }
 
 func (h *AuthHandler) RegisterPage(c *gin.Context) {
-	templ.Handler(pages.Register(pages.RegisterProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
+	templ.Handler(pages.Register(pages.RegisterProps{AppName: "GO-FullStack"})).ServeHTTP(c.Writer, c.Request)
 }
 func (h *AuthHandler) LoginPage(c *gin.Context) {
-	templ.Handler(pages.Login(pages.LoginProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
+	templ.Handler(pages.Login(pages.LoginProps{AppName: "GO-FullStack"})).ServeHTTP(c.Writer, c.Request)
 }
 func (h *AuthHandler) ForgotPasswordPage(c *gin.Context) {
-	templ.Handler(pages.ForgotPassword(pages.ForgotPasswordProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
+	templ.Handler(pages.ForgotPassword(pages.ForgotPasswordProps{AppName: "GO-FullStack"})).ServeHTTP(c.Writer, c.Request)
 }
 func (h *AuthHandler) ResetPasswordPage(c *gin.Context) {
-	templ.Handler(pages.ResetPassword(pages.ResetPasswordProps{AppName: "Go API Starter", Token: c.Query("token")})).ServeHTTP(c.Writer, c.Request)
+	templ.Handler(pages.ResetPassword(pages.ResetPasswordProps{AppName: "GO-FullStack", Token: c.Query("token")})).ServeHTTP(c.Writer, c.Request)
 }
 func (h *AuthHandler) DashboardPage(c *gin.Context) {
-	templ.Handler(pages.Dashboard(pages.DashboardProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
+	templ.Handler(pages.Dashboard(pages.DashboardProps{AppName: "GO-FullStack"})).ServeHTTP(c.Writer, c.Request)
 }
 func (h *AuthHandler) DashboardSettingsPage(c *gin.Context) {
-	templ.Handler(pages.DashboardSettings(pages.DashboardSettingsProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
+	templ.Handler(pages.DashboardSettings(pages.DashboardSettingsProps{AppName: "GO-FullStack"})).ServeHTTP(c.Writer, c.Request)
 }
 
 func (h *AuthHandler) ForgotPassword(c *gin.Context) {

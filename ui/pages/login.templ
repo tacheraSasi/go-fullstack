@@ -183,7 +183,7 @@ templ Login(props LoginProps) {
                                 localStorage.setItem("auth_token", payload.token);
                             }
 
-                            window.location.href = "/";
+                            window.location.href = "/dashboard";
                         } catch (_err) {
                             this.error = "Network error. Please try again.";
                         } finally {

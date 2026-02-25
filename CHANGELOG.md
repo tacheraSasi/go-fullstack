@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Initial Go API starter template
+- Initial GO-FullStack template
 - JWT authentication system
 - Multi-database support (SQLite, PostgreSQL, MySQL)
 - Structured logging with Logrus
@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-10-11
 
 ### Added
-- Initial release of Go API Starter
+- Initial release of GO-FullStack
 - Complete REST API foundation
 - Authentication and authorization
 - Database integration with GORM
