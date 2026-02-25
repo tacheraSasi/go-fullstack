@@ -84,6 +84,9 @@ templ Home(props HomeProps) {
                         }
                         <p class="mb-4 text-sm text-muted-foreground">Jump to common endpoints and app sections while developing.</p>
                         <div class="flex flex-wrap gap-2">
+                            @button.Button(button.Props{Href: "/auth/dashboard", Variant: button.VariantSecondary, Size: button.SizeSm}) {
+                                /auth/dashboard
+                            }
                             @button.Button(button.Props{Href: "/auth/login", Variant: button.VariantSecondary, Size: button.SizeSm}) {
                                 /auth/login
                             }

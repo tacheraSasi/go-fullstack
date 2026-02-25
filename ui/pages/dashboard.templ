@@ -1,0 +1,80 @@
+package pages
+
+import (
+	"github.com/tacheraSasi/go-api-starter/components/card"
+	"github.com/tacheraSasi/go-api-starter/ui/layouts"
+)
+
+type DashboardProps struct {
+	AppName string
+}
+
+templ Dashboard(props DashboardProps) {
+	@layouts.DashboardLayout(props.AppName, "Dashboard", "Overview of your workspace", "overview") {
+		<div class="grid gap-4 md:grid-cols-3" x-data="dashboardOverview()" x-init="init()">
+			@card.Card() {
+				@card.Header() {
+					@card.Title() { Users }
+					@card.Description() { Total active users in system }
+				}
+				@card.Content() {
+					<p class="text-3xl font-semibold" x-text="stats.users"></p>
+				}
+			}
+			@card.Card() {
+				@card.Header() {
+					@card.Title() { Roles }
+					@card.Description() { Configured roles }
+				}
+				@card.Content() {
+					<p class="text-3xl font-semibold" x-text="stats.roles"></p>
+				}
+			}
+			@card.Card() {
+				@card.Header() {
+					@card.Title() { Auth Status }
+					@card.Description() { API token health }
+				}
+				@card.Content() {
+					<p class="text-sm" :class="ok ? 'text-primary' : 'text-destructive'" x-text="ok ? 'Connected' : 'Not connected'"></p>
+				}
+			}
+			<div class="md:col-span-3 rounded-lg border p-4 text-sm text-muted-foreground" x-cloak x-show="error" x-text="error"></div>
+		</div>
+
+		<script nonce={ templ.GetNonce(ctx) }>
+			function dashboardOverview() {
+				return {
+					stats: { users: 0, roles: 0 },
+					ok: false,
+					error: '',
+					async init() {
+						const token = localStorage.getItem('auth_token');
+						if (!token) return;
+						try {
+							const [usersResp, rolesResp] = await Promise.all([
+								fetch('/api/v1/admin/users?limit=100&offset=0&active=true', { headers: { 'Authorization': `Bearer ${token}` } }),
+								fetch('/api/v1/admin/roles?limit=100&offset=0&active=true', { headers: { 'Authorization': `Bearer ${token}` } }),
+							]);
+
+							if (!usersResp.ok || !rolesResp.ok) {
+								this.error = 'Admin endpoints require an admin account.';
+								this.ok = false;
+								return;
+							}
+
+							const usersJson = await usersResp.json();
+							const rolesJson = await rolesResp.json();
+							this.stats.users = usersJson?.data?.length || 0;
+							this.stats.roles = rolesJson?.data?.length || 0;
+							this.ok = true;
+						} catch (_e) {
+							this.error = 'Failed to load dashboard stats.';
+							this.ok = false;
+						}
+					},
+				}
+			}
+		</script>
+	}
+}

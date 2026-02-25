@@ -4902,3 +4902,18 @@
   "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
   "time": "2026-02-25T12:18:42+03:00"
 }
+{
+  "level": "warning",
+  "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
+  "time": "2026-02-25T12:25:36+03:00"
+}
+{
+  "level": "warning",
+  "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
+  "time": "2026-02-25T12:26:06+03:00"
+}
+{
+  "level": "warning",
+  "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
+  "time": "2026-02-25T12:26:47+03:00"
+}

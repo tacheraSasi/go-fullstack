@@ -1,0 +1,127 @@
+package pages
+
+import (
+	"github.com/tacheraSasi/go-api-starter/components/card"
+	"github.com/tacheraSasi/go-api-starter/components/form"
+	"github.com/tacheraSasi/go-api-starter/components/input"
+	"github.com/tacheraSasi/go-api-starter/ui/layouts"
+)
+
+type DashboardSettingsProps struct {
+	AppName string
+}
+
+templ DashboardSettings(props DashboardSettingsProps) {
+	@layouts.DashboardLayout(props.AppName, "Settings", "Manage your profile and password", "settings") {
+		<div x-data="settingsPage()" x-init="init()" class="grid gap-4 lg:grid-cols-2">
+			<div x-cloak x-show="error" class="lg:col-span-2 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive" x-text="error"></div>
+			<div x-cloak x-show="message" class="lg:col-span-2 rounded-md border border-primary/30 bg-primary/10 px-3 py-2 text-sm text-primary" x-text="message"></div>
+
+			@card.Card() {
+				@card.Header() {
+					@card.Title() { Profile }
+					@card.Description() { Update your name and email address }
+				}
+				@card.Content(card.ContentProps{Class: "space-y-4"}) {
+					@form.Item() {
+						@form.Label(form.LabelProps{For: "name"}) { Name }
+						@input.Input(input.Props{ID: "name", Attributes: templ.Attributes{"x-model": "profile.name"}})
+					}
+					@form.Item() {
+						@form.Label(form.LabelProps{For: "email"}) { Email }
+						@input.Input(input.Props{ID: "email", Type: input.TypeEmail, Attributes: templ.Attributes{"x-model": "profile.email"}})
+					}
+					<button class="inline-flex h-9 items-center justify-center rounded-md border px-4 text-sm hover:bg-accent" @click="saveProfile">Save profile</button>
+				}
+			}
+
+			@card.Card() {
+				@card.Header() {
+					@card.Title() { Password }
+					@card.Description() { Change your account password }
+				}
+				@card.Content(card.ContentProps{Class: "space-y-4"}) {
+					@form.Item() {
+						@form.Label(form.LabelProps{For: "new_password"}) { New Password }
+						@input.Input(input.Props{ID: "new_password", Type: input.TypePassword, Attributes: templ.Attributes{"x-model": "password.new"}})
+					}
+					@form.Item() {
+						@form.Label(form.LabelProps{For: "confirm_password"}) { Confirm Password }
+						@input.Input(input.Props{ID: "confirm_password", Type: input.TypePassword, Attributes: templ.Attributes{"x-model": "password.confirm"}})
+					}
+					<button class="inline-flex h-9 items-center justify-center rounded-md border px-4 text-sm hover:bg-accent" @click="savePassword">Update password</button>
+				}
+			}
+		</div>
+
+		<script nonce={ templ.GetNonce(ctx) }>
+			function settingsPage() {
+				return {
+					token: '',
+					userId: '',
+					profile: { name: '', email: '' },
+					password: { new: '', confirm: '' },
+					error: '',
+					message: '',
+					init() {
+						const token = localStorage.getItem('auth_token');
+						if (!token) return;
+						this.token = token;
+						const payload = token.split('.')[1];
+						if (!payload) return;
+						try {
+							const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+							this.userId = decoded?.user?.id || '';
+							this.profile.name = decoded?.user?.name || '';
+							this.profile.email = decoded?.user?.email || '';
+						} catch (_e) {}
+					},
+					async saveProfile() {
+						this.error = '';
+						this.message = '';
+						if (!this.userId) {
+							this.error = 'Unable to identify current user.';
+							return;
+						}
+						const resp = await fetch(`/api/v1/users/${this.userId}`, {
+							method: 'PUT',
+							headers: { 'Authorization': `Bearer ${this.token}`, 'Content-Type': 'application/json' },
+							body: JSON.stringify({ name: this.profile.name, email: this.profile.email }),
+						});
+						const data = await resp.json();
+						if (!resp.ok) {
+							this.error = data.error || 'Failed to update profile';
+							return;
+						}
+						this.message = 'Profile updated successfully';
+					},
+					async savePassword() {
+						this.error = '';
+						this.message = '';
+						if (!this.userId) {
+							this.error = 'Unable to identify current user.';
+							return;
+						}
+						if (this.password.new !== this.password.confirm) {
+							this.error = 'Password confirmation does not match.';
+							return;
+						}
+						const resp = await fetch(`/api/v1/users/${this.userId}/password`, {
+							method: 'PUT',
+							headers: { 'Authorization': `Bearer ${this.token}`, 'Content-Type': 'application/json' },
+							body: JSON.stringify({ password: this.password.new }),
+						});
+						const data = await resp.json();
+						if (!resp.ok) {
+							this.error = data.error || 'Failed to update password';
+							return;
+						}
+						this.password.new = '';
+						this.password.confirm = '';
+						this.message = 'Password updated successfully';
+					},
+				}
+			}
+		</script>
+	}
+}

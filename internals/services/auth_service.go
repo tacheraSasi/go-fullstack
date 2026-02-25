@@ -32,12 +32,15 @@ func NewAuthService(repo repositories.UserRepository, tokenService TokenService)
 }
 
 func (s *authService) Login(email, password string) (models.User, error) {
-	user, err := s.repo.GetUserByEmail(email)
+	user, err := s.repo.GetUserByEmailWithRoles(email)
 	if err != nil {
 		return models.User{}, err
 	}
 	if err := user.CheckPassword(password); err != nil {
 		return models.User{}, err
+	}
+	if user.HasRole(models.RoleAdmin) {
+		user.Role = models.RoleAdmin
 	}
 	return *user, nil
 }
