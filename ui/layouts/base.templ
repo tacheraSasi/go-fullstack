@@ -12,6 +12,7 @@ templ BaseLayout(title, description string) {
 			<meta name="description" content={ description }/>
 
 			<link href="/assets/css/output.css" rel="stylesheet"/>
+			<link href="/assets/css/input.css" rel="stylesheet"/>
 
 			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/avatar.min.js"></script>
 			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/calendar.min.js"></script>

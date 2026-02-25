@@ -2,7 +2,7 @@ version: "3"
 
 vars:
   TAILWIND_CMD:
-    sh: command -v tailwindcss >/dev/null 2>&1 && echo "tailwindcss" || echo "npx tailwindcss@latest"
+    sh: command -v tailwindcss >/dev/null 2>&1 && echo "tailwindcss" || echo "npx @tailwindcss/cli@latest"
 
 tasks:
   templ:
