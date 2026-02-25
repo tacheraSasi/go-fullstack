@@ -9,7 +9,6 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"github.com/tacheraSasi/go-api-starter/components/button"
 	"github.com/tacheraSasi/go-api-starter/components/card"
 	"github.com/tacheraSasi/go-api-starter/components/input"
 	"github.com/tacheraSasi/go-api-starter/ui/layouts"
@@ -189,7 +188,7 @@ func DashboardUsers(props DashboardUsersProps) templ.Component {
 			var templ_7745c5c3_Var8 string
 			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(templ.GetNonce(ctx))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/pages/dashboard_users.templ`, Line: 83, Col: 37}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/pages/dashboard_users.templ`, Line: 82, Col: 37}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 			if templ_7745c5c3_Err != nil {
