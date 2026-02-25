@@ -44,6 +44,8 @@ func (h *AuthHandler) RegisterWebRoutes(router *gin.Engine) {
 	{
 		authGroup.GET("/register", h.RegisterPage)
 		authGroup.GET("/login", h.LoginPage)
+		authGroup.GET("/forgot-password", h.ForgotPasswordPage)
+		authGroup.GET("/reset-password", h.ResetPasswordPage)
 		authGroup.POST("/logout", h.Logout)
 	}
 }
@@ -53,6 +55,12 @@ func (h *AuthHandler) RegisterPage(c *gin.Context) {
 }
 func (h *AuthHandler) LoginPage(c *gin.Context) {
 	templ.Handler(pages.Login(pages.LoginProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
+}
+func (h *AuthHandler) ForgotPasswordPage(c *gin.Context) {
+	templ.Handler(pages.ForgotPassword(pages.ForgotPasswordProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
+}
+func (h *AuthHandler) ResetPasswordPage(c *gin.Context) {
+	templ.Handler(pages.ResetPassword(pages.ResetPasswordProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
 }
 
 func (h *AuthHandler) Register(c *gin.Context) {
