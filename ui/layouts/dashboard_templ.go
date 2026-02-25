@@ -54,46 +54,59 @@ func DashboardLayout(appName, title, description, active string) templ.Component
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" x-init=\"init()\" class=\"min-h-screen bg-background text-foreground\"><div class=\"grid min-h-screen grid-cols-1 md:grid-cols-[240px_1fr]\"><aside class=\"border-r bg-card/80 p-4\"><div class=\"mb-6 px-2\"><p class=\"text-sm text-muted-foreground\">Workspace</p><h2 class=\"text-lg font-semibold\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" x-init=\"init()\" x-cloak class=\"min-h-screen bg-background text-foreground\"><!-- Mobile top bar --><div class=\"flex items-center justify-between border-b bg-card/80 px-4 py-3 md:hidden\"><h2 class=\"text-sm font-semibold\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(appName)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/layouts/dashboard.templ`, Line: 17, Col: 49}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/layouts/dashboard.templ`, Line: 16, Col: 47}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</h2></div><nav class=\"space-y-1\"><a href=\"/dashboard\" class=\"block rounded-md px-3 py-2 text-sm transition\" :class=\"active === 'overview' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'\">Overview</a> <a href=\"/dashboard/users\" class=\"block rounded-md px-3 py-2 text-sm transition\" :class=\"active === 'users' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'\">Users</a> <a href=\"/dashboard/settings\" class=\"block rounded-md px-3 py-2 text-sm transition\" :class=\"active === 'settings' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'\">Settings</a></nav><div class=\"mt-8 border-t pt-4\"><p class=\"text-xs text-muted-foreground\" x-text=\"currentUser?.email || 'Not signed in'\"></p><button @click=\"logout\" class=\"mt-3 inline-flex h-8 items-center justify-center rounded-md border px-3 text-xs hover:bg-accent\">Logout</button></div></aside><div class=\"p-6 sm:p-8\"><header class=\"mb-6 border-b pb-4\"><h1 class=\"text-2xl font-semibold tracking-tight\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</h2><button @click=\"sidebarOpen = !sidebarOpen\" class=\"rounded-md border p-1.5\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-4 w-4\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"></path></svg></button></div><div class=\"grid min-h-screen grid-cols-1 md:grid-cols-[240px_1fr]\"><!-- Sidebar --><aside class=\"border-r bg-card/80 p-4\" :class=\"sidebarOpen ? 'block' : 'hidden md:block'\"><div class=\"mb-6 px-2 hidden md:block\"><h2 class=\"text-lg font-semibold\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var5 string
-			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(title)
+			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(appName)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/layouts/dashboard.templ`, Line: 54, Col: 63}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/layouts/dashboard.templ`, Line: 29, Col: 49}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</h1><p class=\"mt-1 text-sm text-muted-foreground\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</h2></div><!-- User info at top --><div class=\"mb-4 rounded-md bg-accent/30 px-3 py-2\"><p class=\"text-sm font-medium\" x-text=\"currentUser?.name || 'User'\"></p><p class=\"text-xs text-muted-foreground\" x-text=\"currentUser?.email || ''\"></p></div><nav class=\"space-y-1\"><a href=\"/dashboard\" class=\"block rounded-md px-3 py-2 text-sm transition\" :class=\"active === 'overview' ? 'bg-accent text-accent-foreground font-medium' : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'\">Dashboard</a> <a href=\"/dashboard/settings\" class=\"block rounded-md px-3 py-2 text-sm transition\" :class=\"active === 'settings' ? 'bg-accent text-accent-foreground font-medium' : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'\">Settings</a></nav><div class=\"mt-8 border-t pt-4\"><button @click=\"logout\" class=\"inline-flex h-8 w-full items-center justify-center rounded-md border px-3 text-xs hover:bg-accent\">Logout</button></div></aside><!-- Main content --><div class=\"p-6 sm:p-8\"><header class=\"mb-6 border-b pb-4\"><h1 class=\"text-2xl font-semibold tracking-tight\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var6 string
-			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(description)
+			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/layouts/dashboard.templ`, Line: 55, Col: 65}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/layouts/dashboard.templ`, Line: 67, Col: 63}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</p></header>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</h1><p class=\"mt-1 text-sm text-muted-foreground\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var7 string
+			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(description)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/layouts/dashboard.templ`, Line: 68, Col: 65}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</p></header>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -101,20 +114,20 @@ func DashboardLayout(appName, title, description, active string) templ.Component
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div></div></div><script nonce=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</div></div></div><script nonce=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var7 string
-			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(templ.GetNonce(ctx))
+			var templ_7745c5c3_Var8 string
+			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(templ.GetNonce(ctx))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/layouts/dashboard.templ`, Line: 62, Col: 37}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/layouts/dashboard.templ`, Line: 75, Col: 37}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\">\n\t\t\tfunction parseJwt(token) {\n\t\t\t\ttry {\n\t\t\t\t\tconst base64Url = token.split('.')[1];\n\t\t\t\t\tconst base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');\n\t\t\t\t\tconst jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {\n\t\t\t\t\t\treturn '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);\n\t\t\t\t\t}).join(''));\n\t\t\t\t\treturn JSON.parse(jsonPayload);\n\t\t\t\t} catch (_e) {\n\t\t\t\t\treturn null;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tfunction dashboardShell(active) {\n\t\t\t\treturn {\n\t\t\t\t\tactive,\n\t\t\t\t\ttoken: '',\n\t\t\t\t\tcurrentUser: null,\n\t\t\t\t\tinit() {\n\t\t\t\t\t\tconst token = localStorage.getItem('auth_token');\n\t\t\t\t\t\tif (!token) {\n\t\t\t\t\t\t\twindow.location.href = '/auth/login';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tthis.token = token;\n\t\t\t\t\t\tconst decoded = parseJwt(token);\n\t\t\t\t\t\tif (!decoded || !decoded.user) {\n\t\t\t\t\t\t\tlocalStorage.removeItem('auth_token');\n\t\t\t\t\t\t\twindow.location.href = '/auth/login';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tthis.currentUser = decoded.user;\n\t\t\t\t\t\twindow.__auth = {\n\t\t\t\t\t\t\ttoken: this.token,\n\t\t\t\t\t\t\tuser: this.currentUser,\n\t\t\t\t\t\t};\n\t\t\t\t\t},\n\t\t\t\t\tasync logout() {\n\t\t\t\t\t\ttry {\n\t\t\t\t\t\t\tawait fetch('/api/v1/logout', {\n\t\t\t\t\t\t\t\tmethod: 'POST',\n\t\t\t\t\t\t\t\theaders: {\n\t\t\t\t\t\t\t\t\t'Authorization': `Bearer ${this.token}`,\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t});\n\t\t\t\t\t\t} catch (_e) {}\n\t\t\t\t\t\tlocalStorage.removeItem('auth_token');\n\t\t\t\t\t\twindow.location.href = '/auth/login';\n\t\t\t\t\t},\n\t\t\t\t}\n\t\t\t}\n\t\t</script>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\">\n\t\t\tfunction parseJwt(token) {\n\t\t\t\ttry {\n\t\t\t\t\tconst base64Url = token.split('.')[1];\n\t\t\t\t\tconst base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');\n\t\t\t\t\tconst jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {\n\t\t\t\t\t\treturn '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);\n\t\t\t\t\t}).join(''));\n\t\t\t\t\treturn JSON.parse(jsonPayload);\n\t\t\t\t} catch (_e) {\n\t\t\t\t\treturn null;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tfunction dashboardShell(active) {\n\t\t\t\treturn {\n\t\t\t\t\tactive,\n\t\t\t\t\tsidebarOpen: false,\n\t\t\t\t\ttoken: '',\n\t\t\t\t\tcurrentUser: null,\n\t\t\t\t\tinit() {\n\t\t\t\t\t\tconst token = localStorage.getItem('auth_token');\n\t\t\t\t\t\tif (!token) {\n\t\t\t\t\t\t\twindow.location.href = '/auth/login';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tthis.token = token;\n\t\t\t\t\t\tconst decoded = parseJwt(token);\n\t\t\t\t\t\tif (!decoded || !decoded.user) {\n\t\t\t\t\t\t\tlocalStorage.removeItem('auth_token');\n\t\t\t\t\t\t\twindow.location.href = '/auth/login';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tthis.currentUser = decoded.user;\n\t\t\t\t\t\twindow.__auth = {\n\t\t\t\t\t\t\ttoken: this.token,\n\t\t\t\t\t\t\tuser: this.currentUser,\n\t\t\t\t\t\t};\n\t\t\t\t\t},\n\t\t\t\t\tasync logout() {\n\t\t\t\t\t\ttry {\n\t\t\t\t\t\t\tawait fetch('/api/v1/logout', {\n\t\t\t\t\t\t\t\tmethod: 'POST',\n\t\t\t\t\t\t\t\theaders: {\n\t\t\t\t\t\t\t\t\t'Authorization': `Bearer ${this.token}`,\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t});\n\t\t\t\t\t\t} catch (_e) {}\n\t\t\t\t\t\tlocalStorage.removeItem('auth_token');\n\t\t\t\t\t\twindow.location.href = '/auth/login';\n\t\t\t\t\t},\n\t\t\t\t}\n\t\t\t}\n\t\t</script>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

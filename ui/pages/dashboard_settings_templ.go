@@ -52,7 +52,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div x-data=\"settingsPage()\" x-init=\"init()\" class=\"grid gap-4 lg:grid-cols-2\"><div x-cloak x-show=\"error\" class=\"lg:col-span-2 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive\" x-text=\"error\"></div><div x-cloak x-show=\"message\" class=\"lg:col-span-2 rounded-md border border-primary/30 bg-primary/10 px-3 py-2 text-sm text-primary\" x-text=\"message\"></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div x-data=\"settingsPage()\" x-init=\"init()\" class=\"space-y-6\"><!-- Feedback banners --><div x-cloak x-show=\"error\" class=\"rounded-md border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive\" x-text=\"error\"></div><div x-cloak x-show=\"message\" class=\"rounded-md border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-primary\" x-text=\"message\"></div><!-- Profile section -->")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -92,7 +92,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 							}()
 						}
 						ctx = templ.InitializeContext(ctx)
-						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "Profile ")
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "Profile Information ")
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
@@ -118,7 +118,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 							}()
 						}
 						ctx = templ.InitializeContext(ctx)
-						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "Update your name and email address ")
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "Update your name and email address. ")
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
@@ -188,7 +188,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
-						templ_7745c5c3_Err = input.Input(input.Props{ID: "name", Attributes: templ.Attributes{"x-model": "profile.name"}}).Render(ctx, templ_7745c5c3_Buffer)
+						templ_7745c5c3_Err = input.Input(input.Props{ID: "name", Placeholder: "Your name", Attributes: templ.Attributes{"x-model": "profile.name"}}).Render(ctx, templ_7745c5c3_Buffer)
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
@@ -240,7 +240,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
-						templ_7745c5c3_Err = input.Input(input.Props{ID: "email", Type: input.TypeEmail, Attributes: templ.Attributes{"x-model": "profile.email"}}).Render(ctx, templ_7745c5c3_Buffer)
+						templ_7745c5c3_Err = input.Input(input.Props{ID: "email", Type: input.TypeEmail, Placeholder: "you@example.com", Attributes: templ.Attributes{"x-model": "profile.email"}}).Render(ctx, templ_7745c5c3_Buffer)
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
@@ -250,7 +250,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, " <button class=\"inline-flex h-9 items-center justify-center rounded-md border px-4 text-sm hover:bg-accent\" @click=\"saveProfile\">Save profile</button>")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, " <div class=\"flex items-center gap-3 pt-2\"><button class=\"inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm text-primary-foreground hover:bg-primary/90 disabled:opacity-50\" :disabled=\"saving\" @click=\"saveProfile\"><span x-show=\"!saving\">Save Changes</span> <span x-show=\"saving\" x-cloak>Saving...</span></button></div>")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -263,6 +263,10 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 				return nil
 			})
 			templ_7745c5c3_Err = card.Card().Render(templ.WithChildren(ctx, templ_7745c5c3_Var3), templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<!-- Password section -->")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -302,7 +306,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 							}()
 						}
 						ctx = templ.InitializeContext(ctx)
-						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "Password ")
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "Change Password ")
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
@@ -312,7 +316,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, " ")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, " ")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -328,7 +332,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 							}()
 						}
 						ctx = templ.InitializeContext(ctx)
-						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "Change your account password ")
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "Use a strong password with at least 8 characters. ")
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
@@ -344,7 +348,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, " ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -384,7 +388,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 								}()
 							}
 							ctx = templ.InitializeContext(ctx)
-							templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "New Password ")
+							templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "New Password ")
 							if templ_7745c5c3_Err != nil {
 								return templ_7745c5c3_Err
 							}
@@ -394,11 +398,11 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
-						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, " ")
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, " ")
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
-						templ_7745c5c3_Err = input.Input(input.Props{ID: "new_password", Type: input.TypePassword, Attributes: templ.Attributes{"x-model": "password.new"}}).Render(ctx, templ_7745c5c3_Buffer)
+						templ_7745c5c3_Err = input.Input(input.Props{ID: "new_password", Type: input.TypePassword, Placeholder: "New password", Attributes: templ.Attributes{"x-model": "password.newPass"}}).Render(ctx, templ_7745c5c3_Buffer)
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
@@ -408,7 +412,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, " ")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, " ")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -436,7 +440,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 								}()
 							}
 							ctx = templ.InitializeContext(ctx)
-							templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "Confirm Password ")
+							templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "Confirm Password ")
 							if templ_7745c5c3_Err != nil {
 								return templ_7745c5c3_Err
 							}
@@ -446,11 +450,11 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
-						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, " ")
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, " ")
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
-						templ_7745c5c3_Err = input.Input(input.Props{ID: "confirm_password", Type: input.TypePassword, Attributes: templ.Attributes{"x-model": "password.confirm"}}).Render(ctx, templ_7745c5c3_Buffer)
+						templ_7745c5c3_Err = input.Input(input.Props{ID: "confirm_password", Type: input.TypePassword, Placeholder: "Confirm password", Attributes: templ.Attributes{"x-model": "password.confirm"}}).Render(ctx, templ_7745c5c3_Buffer)
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
@@ -460,7 +464,7 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, " <button class=\"inline-flex h-9 items-center justify-center rounded-md border px-4 text-sm hover:bg-accent\" @click=\"savePassword\">Update password</button>")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, " <div class=\"flex items-center gap-3 pt-2\"><button class=\"inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm text-primary-foreground hover:bg-primary/90 disabled:opacity-50\" :disabled=\"savingPassword\" @click=\"savePassword\"><span x-show=\"!savingPassword\">Update Password</span> <span x-show=\"savingPassword\" x-cloak>Updating...</span></button></div>")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -476,26 +480,140 @@ func DashboardSettings(props DashboardSettingsProps) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</div><script nonce=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "<!-- Danger zone -->")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var21 string
-			templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinStringErrs(templ.GetNonce(ctx))
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/pages/dashboard_settings.templ`, Line: 57, Col: 37}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
+			templ_7745c5c3_Var21 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+				templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+				templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+				if !templ_7745c5c3_IsBuffer {
+					defer func() {
+						templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+						if templ_7745c5c3_Err == nil {
+							templ_7745c5c3_Err = templ_7745c5c3_BufErr
+						}
+					}()
+				}
+				ctx = templ.InitializeContext(ctx)
+				templ_7745c5c3_Var22 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+					templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+					templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+					if !templ_7745c5c3_IsBuffer {
+						defer func() {
+							templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+							if templ_7745c5c3_Err == nil {
+								templ_7745c5c3_Err = templ_7745c5c3_BufErr
+							}
+						}()
+					}
+					ctx = templ.InitializeContext(ctx)
+					templ_7745c5c3_Var23 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+						templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+						templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+						if !templ_7745c5c3_IsBuffer {
+							defer func() {
+								templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+								if templ_7745c5c3_Err == nil {
+									templ_7745c5c3_Err = templ_7745c5c3_BufErr
+								}
+							}()
+						}
+						ctx = templ.InitializeContext(ctx)
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "Account ")
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						return nil
+					})
+					templ_7745c5c3_Err = card.Title().Render(templ.WithChildren(ctx, templ_7745c5c3_Var23), templ_7745c5c3_Buffer)
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, " ")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					templ_7745c5c3_Var24 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+						templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+						templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+						if !templ_7745c5c3_IsBuffer {
+							defer func() {
+								templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+								if templ_7745c5c3_Err == nil {
+									templ_7745c5c3_Err = templ_7745c5c3_BufErr
+								}
+							}()
+						}
+						ctx = templ.InitializeContext(ctx)
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "Sign out of your account on this device. ")
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						return nil
+					})
+					templ_7745c5c3_Err = card.Description().Render(templ.WithChildren(ctx, templ_7745c5c3_Var24), templ_7745c5c3_Buffer)
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					return nil
+				})
+				templ_7745c5c3_Err = card.Header().Render(templ.WithChildren(ctx, templ_7745c5c3_Var22), templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, " ")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Var25 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+					templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+					templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+					if !templ_7745c5c3_IsBuffer {
+						defer func() {
+							templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+							if templ_7745c5c3_Err == nil {
+								templ_7745c5c3_Err = templ_7745c5c3_BufErr
+							}
+						}()
+					}
+					ctx = templ.InitializeContext(ctx)
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "<button class=\"inline-flex h-9 items-center justify-center rounded-md border border-destructive/40 px-4 text-sm text-destructive hover:bg-destructive/10\" @click=\"$dispatch('logout')\">Logout</button>")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					return nil
+				})
+				templ_7745c5c3_Err = card.Content().Render(templ.WithChildren(ctx, templ_7745c5c3_Var25), templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				return nil
+			})
+			templ_7745c5c3_Err = card.Card().Render(templ.WithChildren(ctx, templ_7745c5c3_Var21), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "\">\n\t\t\tfunction settingsPage() {\n\t\t\t\treturn {\n\t\t\t\t\ttoken: '',\n\t\t\t\t\tuserId: '',\n\t\t\t\t\tprofile: { name: '', email: '' },\n\t\t\t\t\tpassword: { new: '', confirm: '' },\n\t\t\t\t\terror: '',\n\t\t\t\t\tmessage: '',\n\t\t\t\t\tinit() {\n\t\t\t\t\t\tconst token = localStorage.getItem('auth_token');\n\t\t\t\t\t\tif (!token) return;\n\t\t\t\t\t\tthis.token = token;\n\t\t\t\t\t\tconst payload = token.split('.')[1];\n\t\t\t\t\t\tif (!payload) return;\n\t\t\t\t\t\ttry {\n\t\t\t\t\t\t\tconst decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));\n\t\t\t\t\t\t\tthis.userId = decoded?.user?.id || '';\n\t\t\t\t\t\t\tthis.profile.name = decoded?.user?.name || '';\n\t\t\t\t\t\t\tthis.profile.email = decoded?.user?.email || '';\n\t\t\t\t\t\t} catch (_e) {}\n\t\t\t\t\t},\n\t\t\t\t\tasync saveProfile() {\n\t\t\t\t\t\tthis.error = '';\n\t\t\t\t\t\tthis.message = '';\n\t\t\t\t\t\tif (!this.userId) {\n\t\t\t\t\t\t\tthis.error = 'Unable to identify current user.';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tconst resp = await fetch(`/api/v1/users/${this.userId}`, {\n\t\t\t\t\t\t\tmethod: 'PUT',\n\t\t\t\t\t\t\theaders: { 'Authorization': `Bearer ${this.token}`, 'Content-Type': 'application/json' },\n\t\t\t\t\t\t\tbody: JSON.stringify({ name: this.profile.name, email: this.profile.email }),\n\t\t\t\t\t\t});\n\t\t\t\t\t\tconst data = await resp.json();\n\t\t\t\t\t\tif (!resp.ok) {\n\t\t\t\t\t\t\tthis.error = data.error || 'Failed to update profile';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tthis.message = 'Profile updated successfully';\n\t\t\t\t\t},\n\t\t\t\t\tasync savePassword() {\n\t\t\t\t\t\tthis.error = '';\n\t\t\t\t\t\tthis.message = '';\n\t\t\t\t\t\tif (!this.userId) {\n\t\t\t\t\t\t\tthis.error = 'Unable to identify current user.';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (this.password.new !== this.password.confirm) {\n\t\t\t\t\t\t\tthis.error = 'Password confirmation does not match.';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tconst resp = await fetch(`/api/v1/users/${this.userId}/password`, {\n\t\t\t\t\t\t\tmethod: 'PUT',\n\t\t\t\t\t\t\theaders: { 'Authorization': `Bearer ${this.token}`, 'Content-Type': 'application/json' },\n\t\t\t\t\t\t\tbody: JSON.stringify({ password: this.password.new }),\n\t\t\t\t\t\t});\n\t\t\t\t\t\tconst data = await resp.json();\n\t\t\t\t\t\tif (!resp.ok) {\n\t\t\t\t\t\t\tthis.error = data.error || 'Failed to update password';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tthis.password.new = '';\n\t\t\t\t\t\tthis.password.confirm = '';\n\t\t\t\t\t\tthis.message = 'Password updated successfully';\n\t\t\t\t\t},\n\t\t\t\t}\n\t\t\t}\n\t\t</script>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "</div><script nonce=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var26 string
+			templ_7745c5c3_Var26, templ_7745c5c3_Err = templ.JoinStringErrs(templ.GetNonce(ctx))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/pages/dashboard_settings.templ`, Line: 94, Col: 37}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var26))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "\">\n\t\t\tfunction settingsPage() {\n\t\t\t\treturn {\n\t\t\t\t\ttoken: '',\n\t\t\t\t\tuserId: '',\n\t\t\t\t\tprofile: { name: '', email: '' },\n\t\t\t\t\tpassword: { newPass: '', confirm: '' },\n\t\t\t\t\terror: '',\n\t\t\t\t\tmessage: '',\n\t\t\t\t\tsaving: false,\n\t\t\t\t\tsavingPassword: false,\n\t\t\t\t\tasync init() {\n\t\t\t\t\t\tconst auth = window.__auth;\n\t\t\t\t\t\tif (!auth) return;\n\t\t\t\t\t\tthis.token = auth.token;\n\t\t\t\t\t\tthis.userId = auth.user?.id || '';\n\n\t\t\t\t\t\t// Fetch fresh user data from API\n\t\t\t\t\t\ttry {\n\t\t\t\t\t\t\tconst resp = await fetch(`/api/v1/users/${this.userId}`, {\n\t\t\t\t\t\t\t\theaders: { 'Authorization': `Bearer ${this.token}` },\n\t\t\t\t\t\t\t});\n\t\t\t\t\t\t\tif (resp.ok) {\n\t\t\t\t\t\t\t\tconst json = await resp.json();\n\t\t\t\t\t\t\t\tconst user = json.data || json;\n\t\t\t\t\t\t\t\tthis.profile.name = user.name || '';\n\t\t\t\t\t\t\t\tthis.profile.email = user.email || '';\n\t\t\t\t\t\t\t} else {\n\t\t\t\t\t\t\t\t// Fallback to JWT data\n\t\t\t\t\t\t\t\tthis.profile.name = auth.user?.name || '';\n\t\t\t\t\t\t\t\tthis.profile.email = auth.user?.email || '';\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t} catch (_e) {\n\t\t\t\t\t\t\tthis.profile.name = auth.user?.name || '';\n\t\t\t\t\t\t\tthis.profile.email = auth.user?.email || '';\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\tasync saveProfile() {\n\t\t\t\t\t\tthis.error = '';\n\t\t\t\t\t\tthis.message = '';\n\t\t\t\t\t\tif (!this.userId) {\n\t\t\t\t\t\t\tthis.error = 'Unable to identify current user.';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (!this.profile.name.trim() || !this.profile.email.trim()) {\n\t\t\t\t\t\t\tthis.error = 'Name and email are required.';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tthis.saving = true;\n\t\t\t\t\t\ttry {\n\t\t\t\t\t\t\tconst resp = await fetch(`/api/v1/users/${this.userId}`, {\n\t\t\t\t\t\t\t\tmethod: 'PUT',\n\t\t\t\t\t\t\t\theaders: { 'Authorization': `Bearer ${this.token}`, 'Content-Type': 'application/json' },\n\t\t\t\t\t\t\t\tbody: JSON.stringify({ name: this.profile.name, email: this.profile.email }),\n\t\t\t\t\t\t\t});\n\t\t\t\t\t\t\tconst data = await resp.json();\n\t\t\t\t\t\t\tif (!resp.ok) {\n\t\t\t\t\t\t\t\tthis.error = data.error || 'Failed to update profile';\n\t\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tthis.message = 'Profile updated successfully.';\n\t\t\t\t\t\t} catch (_e) {\n\t\t\t\t\t\t\tthis.error = 'Network error. Please try again.';\n\t\t\t\t\t\t} finally {\n\t\t\t\t\t\t\tthis.saving = false;\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\tasync savePassword() {\n\t\t\t\t\t\tthis.error = '';\n\t\t\t\t\t\tthis.message = '';\n\t\t\t\t\t\tif (!this.userId) {\n\t\t\t\t\t\t\tthis.error = 'Unable to identify current user.';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (this.password.newPass.length < 6) {\n\t\t\t\t\t\t\tthis.error = 'Password must be at least 6 characters.';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (this.password.newPass !== this.password.confirm) {\n\t\t\t\t\t\t\tthis.error = 'Password confirmation does not match.';\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tthis.savingPassword = true;\n\t\t\t\t\t\ttry {\n\t\t\t\t\t\t\tconst resp = await fetch(`/api/v1/users/${this.userId}/password`, {\n\t\t\t\t\t\t\t\tmethod: 'PUT',\n\t\t\t\t\t\t\t\theaders: { 'Authorization': `Bearer ${this.token}`, 'Content-Type': 'application/json' },\n\t\t\t\t\t\t\t\tbody: JSON.stringify({ password: this.password.newPass }),\n\t\t\t\t\t\t\t});\n\t\t\t\t\t\t\tconst data = await resp.json();\n\t\t\t\t\t\t\tif (!resp.ok) {\n\t\t\t\t\t\t\t\tthis.error = data.error || 'Failed to update password';\n\t\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tthis.password.newPass = '';\n\t\t\t\t\t\t\tthis.password.confirm = '';\n\t\t\t\t\t\t\tthis.message = 'Password updated successfully.';\n\t\t\t\t\t\t} catch (_e) {\n\t\t\t\t\t\t\tthis.error = 'Network error. Please try again.';\n\t\t\t\t\t\t} finally {\n\t\t\t\t\t\t\tthis.savingPassword = false;\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t}\n\t\t\t}\n\t\t</script>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = layouts.DashboardLayout(props.AppName, "Settings", "Manage your profile and password", "settings").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layouts.DashboardLayout(props.AppName, "Settings", "Manage your account settings", "settings").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

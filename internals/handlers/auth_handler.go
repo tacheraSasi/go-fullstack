@@ -46,10 +46,13 @@ func (h *AuthHandler) RegisterWebRoutes(router *gin.Engine) {
 		authGroup.GET("/login", h.LoginPage)
 		authGroup.GET("/forgot-password", h.ForgotPasswordPage)
 		authGroup.GET("/reset-password", h.ResetPasswordPage)
-		authGroup.GET("/dashboard", h.DashboardPage)
-		authGroup.GET("/dashboard/users", h.DashboardUsersPage)
-		authGroup.GET("/dashboard/settings", h.DashboardSettingsPage)
 		authGroup.POST("/logout", h.Logout)
+	}
+
+	dashboardGroup := router.Group("/dashboard")
+	{
+		dashboardGroup.GET("", h.DashboardPage)
+		dashboardGroup.GET("/settings", h.DashboardSettingsPage)
 	}
 }
 
@@ -67,9 +70,6 @@ func (h *AuthHandler) ResetPasswordPage(c *gin.Context) {
 }
 func (h *AuthHandler) DashboardPage(c *gin.Context) {
 	templ.Handler(pages.Dashboard(pages.DashboardProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
-}
-func (h *AuthHandler) DashboardUsersPage(c *gin.Context) {
-	templ.Handler(pages.DashboardUsers(pages.DashboardUsersProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
 }
 func (h *AuthHandler) DashboardSettingsPage(c *gin.Context) {
 	templ.Handler(pages.DashboardSettings(pages.DashboardSettingsProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)

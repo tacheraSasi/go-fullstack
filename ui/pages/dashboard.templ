@@ -10,68 +10,119 @@ type DashboardProps struct {
 }
 
 templ Dashboard(props DashboardProps) {
-	@layouts.DashboardLayout(props.AppName, "Dashboard", "Overview of your workspace", "overview") {
-		<div class="grid gap-4 md:grid-cols-3" x-data="dashboardOverview()" x-init="init()">
-			@card.Card() {
-				@card.Header() {
-					@card.Title() { Users }
-					@card.Description() { Total active users in system }
+	@layouts.DashboardLayout(props.AppName, "Dashboard", "Welcome to your dashboard", "overview") {
+		<div x-data="dashboardHome()" x-init="init()" class="space-y-6">
+			<!-- Welcome banner -->
+			<div class="rounded-lg border bg-card p-6">
+				<h2 class="text-xl font-semibold">
+					Welcome back, <span x-text="user.name || 'there'"></span>!
+				</h2>
+				<p class="mt-1 text-sm text-muted-foreground">Here's a quick overview of your account.</p>
+			</div>
+
+			<!-- Info cards -->
+			<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+				@card.Card() {
+					@card.Header() {
+						@card.Title() { Your Email }
+						@card.Description() { Primary email address }
+					}
+					@card.Content() {
+						<p class="text-lg font-medium" x-text="user.email || '—'"></p>
+					}
 				}
-				@card.Content() {
-					<p class="text-3xl font-semibold" x-text="stats.users"></p>
+
+				@card.Card() {
+					@card.Header() {
+						@card.Title() { Account Status }
+						@card.Description() { Current account state }
+					}
+					@card.Content() {
+						<span
+							class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
+							:class="user.is_active ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'"
+							x-text="user.is_active ? 'Active' : 'Inactive'"
+						></span>
+					}
 				}
-			}
-			@card.Card() {
-				@card.Header() {
-					@card.Title() { Roles }
-					@card.Description() { Configured roles }
+
+				@card.Card() {
+					@card.Header() {
+						@card.Title() { Member Since }
+						@card.Description() { Account creation date }
+					}
+					@card.Content() {
+						<p class="text-lg font-medium" x-text="memberSince"></p>
+					}
 				}
-				@card.Content() {
-					<p class="text-3xl font-semibold" x-text="stats.roles"></p>
+			</div>
+
+			<!-- Roles -->
+			<div x-show="roles.length > 0" x-cloak>
+				@card.Card() {
+					@card.Header() {
+						@card.Title() { Your Roles }
+						@card.Description() { Roles assigned to your account }
+					}
+					@card.Content() {
+						<div class="flex flex-wrap gap-2">
+							<template x-for="role in roles" :key="role.id">
+								<span class="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium" x-text="role.name"></span>
+							</template>
+						</div>
+					}
 				}
-			}
-			@card.Card() {
-				@card.Header() {
-					@card.Title() { Auth Status }
-					@card.Description() { API token health }
-				}
-				@card.Content() {
-					<p class="text-sm" :class="ok ? 'text-primary' : 'text-destructive'" x-text="ok ? 'Connected' : 'Not connected'"></p>
-				}
-			}
-			<div class="md:col-span-3 rounded-lg border p-4 text-sm text-muted-foreground" x-cloak x-show="error" x-text="error"></div>
+			</div>
+
+			<!-- Quick actions -->
+			<div class="flex flex-wrap gap-3">
+				<a href="/dashboard/settings" class="inline-flex h-9 items-center justify-center rounded-md border bg-card px-4 text-sm hover:bg-accent">
+					Edit Profile
+				</a>
+				<a href="/" class="inline-flex h-9 items-center justify-center rounded-md border bg-card px-4 text-sm hover:bg-accent">
+					Back to Home
+				</a>
+			</div>
 		</div>
 
 		<script nonce={ templ.GetNonce(ctx) }>
-			function dashboardOverview() {
+			function dashboardHome() {
 				return {
-					stats: { users: 0, roles: 0 },
-					ok: false,
-					error: '',
+					user: {},
+					roles: [],
+					memberSince: '',
 					async init() {
-						const token = localStorage.getItem('auth_token');
-						if (!token) return;
-						try {
-							const [usersResp, rolesResp] = await Promise.all([
-								fetch('/api/v1/admin/users?limit=100&offset=0&active=true', { headers: { 'Authorization': `Bearer ${token}` } }),
-								fetch('/api/v1/admin/roles?limit=100&offset=0&active=true', { headers: { 'Authorization': `Bearer ${token}` } }),
-							]);
+						const auth = window.__auth;
+						if (!auth) return;
 
-							if (!usersResp.ok || !rolesResp.ok) {
-								this.error = 'Admin endpoints require an admin account.';
-								this.ok = false;
-								return;
-							}
+						// decode user from JWT
+						this.user = auth.user || {};
 
-							const usersJson = await usersResp.json();
-							const rolesJson = await rolesResp.json();
-							this.stats.users = usersJson?.data?.length || 0;
-							this.stats.roles = rolesJson?.data?.length || 0;
-							this.ok = true;
-						} catch (_e) {
-							this.error = 'Failed to load dashboard stats.';
-							this.ok = false;
+						// format member since
+						if (this.user.created_at || this.user.CreatedAt) {
+							const d = new Date(this.user.created_at || this.user.CreatedAt);
+							this.memberSince = d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+						} else {
+							this.memberSince = '—';
 						}
+
+						// fetch fresh user data with roles from the API
+						try {
+							const resp = await fetch(`/api/v1/users/${this.user.id}`, {
+								headers: { 'Authorization': `Bearer ${auth.token}` },
+							});
+							if (resp.ok) {
+								const json = await resp.json();
+								const fresh = json.data || json;
+								this.user = { ...this.user, ...fresh };
+								this.roles = fresh.roles || [];
+
+								if (fresh.created_at || fresh.CreatedAt) {
+									const d = new Date(fresh.created_at || fresh.CreatedAt);
+									this.memberSince = d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+								}
+							}
+						} catch (_e) {}
 					},
 				}
 			}

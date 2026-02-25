@@ -8,47 +8,60 @@ templ DashboardLayout(appName, title, description, active string) {
 		<div
 			x-data={ "dashboardShell('" + active + "')" }
 			x-init="init()"
+			x-cloak
 			class="min-h-screen bg-background text-foreground"
 		>
+			<!-- Mobile top bar -->
+			<div class="flex items-center justify-between border-b bg-card/80 px-4 py-3 md:hidden">
+				<h2 class="text-sm font-semibold">{ appName }</h2>
+				<button @click="sidebarOpen = !sidebarOpen" class="rounded-md border p-1.5">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+				</button>
+			</div>
+
 			<div class="grid min-h-screen grid-cols-1 md:grid-cols-[240px_1fr]">
-				<aside class="border-r bg-card/80 p-4">
-					<div class="mb-6 px-2">
-						<p class="text-sm text-muted-foreground">Workspace</p>
+				<!-- Sidebar -->
+				<aside
+					class="border-r bg-card/80 p-4"
+					:class="sidebarOpen ? 'block' : 'hidden md:block'"
+				>
+					<div class="mb-6 px-2 hidden md:block">
 						<h2 class="text-lg font-semibold">{ appName }</h2>
 					</div>
+
+					<!-- User info at top -->
+					<div class="mb-4 rounded-md bg-accent/30 px-3 py-2">
+						<p class="text-sm font-medium" x-text="currentUser?.name || 'User'"></p>
+						<p class="text-xs text-muted-foreground" x-text="currentUser?.email || ''"></p>
+					</div>
+
 					<nav class="space-y-1">
 						<a
 							href="/dashboard"
 							class="block rounded-md px-3 py-2 text-sm transition"
-							:class="active === 'overview' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'"
+							:class="active === 'overview' ? 'bg-accent text-accent-foreground font-medium' : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'"
 						>
-							Overview
-						</a>
-						<a
-							href="/dashboard/users"
-							class="block rounded-md px-3 py-2 text-sm transition"
-							:class="active === 'users' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'"
-						>
-							Users
+							Dashboard
 						</a>
 						<a
 							href="/dashboard/settings"
 							class="block rounded-md px-3 py-2 text-sm transition"
-							:class="active === 'settings' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'"
+							:class="active === 'settings' ? 'bg-accent text-accent-foreground font-medium' : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'"
 						>
 							Settings
 						</a>
 					</nav>
 					<div class="mt-8 border-t pt-4">
-						<p class="text-xs text-muted-foreground" x-text="currentUser?.email || 'Not signed in'"></p>
 						<button
 							@click="logout"
-							class="mt-3 inline-flex h-8 items-center justify-center rounded-md border px-3 text-xs hover:bg-accent"
+							class="inline-flex h-8 w-full items-center justify-center rounded-md border px-3 text-xs hover:bg-accent"
 						>
 							Logout
 						</button>
 					</div>
 				</aside>
+
+				<!-- Main content -->
 				<div class="p-6 sm:p-8">
 					<header class="mb-6 border-b pb-4">
 						<h1 class="text-2xl font-semibold tracking-tight">{ title }</h1>
@@ -76,6 +89,7 @@ templ DashboardLayout(appName, title, description, active string) {
 			function dashboardShell(active) {
 				return {
 					active,
+					sidebarOpen: false,
 					token: '',
 					currentUser: null,
 					init() {

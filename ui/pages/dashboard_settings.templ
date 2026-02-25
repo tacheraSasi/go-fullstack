@@ -12,44 +12,81 @@ type DashboardSettingsProps struct {
 }
 
 templ DashboardSettings(props DashboardSettingsProps) {
-	@layouts.DashboardLayout(props.AppName, "Settings", "Manage your profile and password", "settings") {
-		<div x-data="settingsPage()" x-init="init()" class="grid gap-4 lg:grid-cols-2">
-			<div x-cloak x-show="error" class="lg:col-span-2 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive" x-text="error"></div>
-			<div x-cloak x-show="message" class="lg:col-span-2 rounded-md border border-primary/30 bg-primary/10 px-3 py-2 text-sm text-primary" x-text="message"></div>
+	@layouts.DashboardLayout(props.AppName, "Settings", "Manage your account settings", "settings") {
+		<div x-data="settingsPage()" x-init="init()" class="space-y-6">
+			<!-- Feedback banners -->
+			<div x-cloak x-show="error" class="rounded-md border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive" x-text="error"></div>
+			<div x-cloak x-show="message" class="rounded-md border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-primary" x-text="message"></div>
 
+			<!-- Profile section -->
 			@card.Card() {
 				@card.Header() {
-					@card.Title() { Profile }
-					@card.Description() { Update your name and email address }
+					@card.Title() { Profile Information }
+					@card.Description() { Update your name and email address. }
 				}
 				@card.Content(card.ContentProps{Class: "space-y-4"}) {
 					@form.Item() {
 						@form.Label(form.LabelProps{For: "name"}) { Name }
-						@input.Input(input.Props{ID: "name", Attributes: templ.Attributes{"x-model": "profile.name"}})
+						@input.Input(input.Props{ID: "name", Placeholder: "Your name", Attributes: templ.Attributes{"x-model": "profile.name"}})
 					}
 					@form.Item() {
 						@form.Label(form.LabelProps{For: "email"}) { Email }
-						@input.Input(input.Props{ID: "email", Type: input.TypeEmail, Attributes: templ.Attributes{"x-model": "profile.email"}})
+						@input.Input(input.Props{ID: "email", Type: input.TypeEmail, Placeholder: "you@example.com", Attributes: templ.Attributes{"x-model": "profile.email"}})
 					}
-					<button class="inline-flex h-9 items-center justify-center rounded-md border px-4 text-sm hover:bg-accent" @click="saveProfile">Save profile</button>
+					<div class="flex items-center gap-3 pt-2">
+						<button
+							class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
+							:disabled="saving"
+							@click="saveProfile"
+						>
+							<span x-show="!saving">Save Changes</span>
+							<span x-show="saving" x-cloak>Saving...</span>
+						</button>
+					</div>
 				}
 			}
 
+			<!-- Password section -->
 			@card.Card() {
 				@card.Header() {
-					@card.Title() { Password }
-					@card.Description() { Change your account password }
+					@card.Title() { Change Password }
+					@card.Description() { Use a strong password with at least 8 characters. }
 				}
 				@card.Content(card.ContentProps{Class: "space-y-4"}) {
 					@form.Item() {
 						@form.Label(form.LabelProps{For: "new_password"}) { New Password }
-						@input.Input(input.Props{ID: "new_password", Type: input.TypePassword, Attributes: templ.Attributes{"x-model": "password.new"}})
+						@input.Input(input.Props{ID: "new_password", Type: input.TypePassword, Placeholder: "New password", Attributes: templ.Attributes{"x-model": "password.newPass"}})
 					}
 					@form.Item() {
 						@form.Label(form.LabelProps{For: "confirm_password"}) { Confirm Password }
-						@input.Input(input.Props{ID: "confirm_password", Type: input.TypePassword, Attributes: templ.Attributes{"x-model": "password.confirm"}})
+						@input.Input(input.Props{ID: "confirm_password", Type: input.TypePassword, Placeholder: "Confirm password", Attributes: templ.Attributes{"x-model": "password.confirm"}})
 					}
-					<button class="inline-flex h-9 items-center justify-center rounded-md border px-4 text-sm hover:bg-accent" @click="savePassword">Update password</button>
+					<div class="flex items-center gap-3 pt-2">
+						<button
+							class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
+							:disabled="savingPassword"
+							@click="savePassword"
+						>
+							<span x-show="!savingPassword">Update Password</span>
+							<span x-show="savingPassword" x-cloak>Updating...</span>
+						</button>
+					</div>
+				}
+			}
+
+			<!-- Danger zone -->
+			@card.Card() {
+				@card.Header() {
+					@card.Title() { Account }
+					@card.Description() { Sign out of your account on this device. }
+				}
+				@card.Content() {
+					<button
+						class="inline-flex h-9 items-center justify-center rounded-md border border-destructive/40 px-4 text-sm text-destructive hover:bg-destructive/10"
+						@click="$dispatch('logout')"
+					>
+						Logout
+					</button>
 				}
 			}
 		</div>
@@ -60,21 +97,36 @@ templ DashboardSettings(props DashboardSettingsProps) {
 					token: '',
 					userId: '',
 					profile: { name: '', email: '' },
-					password: { new: '', confirm: '' },
+					password: { newPass: '', confirm: '' },
 					error: '',
 					message: '',
-					init() {
-						const token = localStorage.getItem('auth_token');
-						if (!token) return;
-						this.token = token;
-						const payload = token.split('.')[1];
-						if (!payload) return;
+					saving: false,
+					savingPassword: false,
+					async init() {
+						const auth = window.__auth;
+						if (!auth) return;
+						this.token = auth.token;
+						this.userId = auth.user?.id || '';
+
+						// Fetch fresh user data from API
 						try {
-							const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
-							this.userId = decoded?.user?.id || '';
-							this.profile.name = decoded?.user?.name || '';
-							this.profile.email = decoded?.user?.email || '';
-						} catch (_e) {}
+							const resp = await fetch(`/api/v1/users/${this.userId}`, {
+								headers: { 'Authorization': `Bearer ${this.token}` },
+							});
+							if (resp.ok) {
+								const json = await resp.json();
+								const user = json.data || json;
+								this.profile.name = user.name || '';
+								this.profile.email = user.email || '';
+							} else {
+								// Fallback to JWT data
+								this.profile.name = auth.user?.name || '';
+								this.profile.email = auth.user?.email || '';
+							}
+						} catch (_e) {
+							this.profile.name = auth.user?.name || '';
+							this.profile.email = auth.user?.email || '';
+						}
 					},
 					async saveProfile() {
 						this.error = '';
@@ -83,17 +135,28 @@ templ DashboardSettings(props DashboardSettingsProps) {
 							this.error = 'Unable to identify current user.';
 							return;
 						}
-						const resp = await fetch(`/api/v1/users/${this.userId}`, {
-							method: 'PUT',
-							headers: { 'Authorization': `Bearer ${this.token}`, 'Content-Type': 'application/json' },
-							body: JSON.stringify({ name: this.profile.name, email: this.profile.email }),
-						});
-						const data = await resp.json();
-						if (!resp.ok) {
-							this.error = data.error || 'Failed to update profile';
+						if (!this.profile.name.trim() || !this.profile.email.trim()) {
+							this.error = 'Name and email are required.';
 							return;
 						}
-						this.message = 'Profile updated successfully';
+						this.saving = true;
+						try {
+							const resp = await fetch(`/api/v1/users/${this.userId}`, {
+								method: 'PUT',
+								headers: { 'Authorization': `Bearer ${this.token}`, 'Content-Type': 'application/json' },
+								body: JSON.stringify({ name: this.profile.name, email: this.profile.email }),
+							});
+							const data = await resp.json();
+							if (!resp.ok) {
+								this.error = data.error || 'Failed to update profile';
+								return;
+							}
+							this.message = 'Profile updated successfully.';
+						} catch (_e) {
+							this.error = 'Network error. Please try again.';
+						} finally {
+							this.saving = false;
+						}
 					},
 					async savePassword() {
 						this.error = '';
@@ -102,23 +165,34 @@ templ DashboardSettings(props DashboardSettingsProps) {
 							this.error = 'Unable to identify current user.';
 							return;
 						}
-						if (this.password.new !== this.password.confirm) {
+						if (this.password.newPass.length < 6) {
+							this.error = 'Password must be at least 6 characters.';
+							return;
+						}
+						if (this.password.newPass !== this.password.confirm) {
 							this.error = 'Password confirmation does not match.';
 							return;
 						}
-						const resp = await fetch(`/api/v1/users/${this.userId}/password`, {
-							method: 'PUT',
-							headers: { 'Authorization': `Bearer ${this.token}`, 'Content-Type': 'application/json' },
-							body: JSON.stringify({ password: this.password.new }),
-						});
-						const data = await resp.json();
-						if (!resp.ok) {
-							this.error = data.error || 'Failed to update password';
-							return;
+						this.savingPassword = true;
+						try {
+							const resp = await fetch(`/api/v1/users/${this.userId}/password`, {
+								method: 'PUT',
+								headers: { 'Authorization': `Bearer ${this.token}`, 'Content-Type': 'application/json' },
+								body: JSON.stringify({ password: this.password.newPass }),
+							});
+							const data = await resp.json();
+							if (!resp.ok) {
+								this.error = data.error || 'Failed to update password';
+								return;
+							}
+							this.password.newPass = '';
+							this.password.confirm = '';
+							this.message = 'Password updated successfully.';
+						} catch (_e) {
+							this.error = 'Network error. Please try again.';
+						} finally {
+							this.savingPassword = false;
 						}
-						this.password.new = '';
-						this.password.confirm = '';
-						this.message = 'Password updated successfully';
 					},
 				}
 			}
