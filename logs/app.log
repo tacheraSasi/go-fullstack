@@ -84,3 +84,930 @@
   "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
   "time": "2026-02-25T11:03:22+03:00"
 }
+{
+  "level": "warning",
+  "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
+  "time": "2026-02-25T11:07:28+03:00"
+}
+{
+  "level": "warning",
+  "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
+  "time": "2026-02-25T11:08:30+03:00"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 33,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/auth/login",
+  "request_id": "",
+  "response_size": 11137,
+  "status": 200,
+  "time": "2026-02-25T11:09:00+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/input.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:09:00+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "level": "warning",
+  "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
+  "time": "2026-02-25T11:09:09+03:00"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 35,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/auth/login",
+  "request_id": "",
+  "response_size": 11137,
+  "status": 200,
+  "time": "2026-02-25T11:09:16+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/input.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:09:16+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/auth/login",
+  "request_id": "",
+  "response_size": 33,
+  "status": 500,
+  "time": "2026-02-25T11:10:51+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/auth/login",
+  "request_id": "",
+  "response_size": 33,
+  "status": 500,
+  "time": "2026-02-25T11:10:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/auth/login",
+  "request_id": "",
+  "response_size": 33,
+  "status": 500,
+  "time": "2026-02-25T11:12:33+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/",
+  "request_id": "",
+  "response_size": 33,
+  "status": 500,
+  "time": "2026-02-25T11:12:37+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "level": "warning",
+  "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
+  "time": "2026-02-25T11:14:55+03:00"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 133,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/",
+  "request_id": "",
+  "response_size": 9048,
+  "status": 200,
+  "time": "2026-02-25T11:15:22+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "level": "warning",
+  "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
+  "time": "2026-02-25T11:16:01+03:00"
+}
+{
+  "level": "warning",
+  "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
+  "time": "2026-02-25T11:19:15+03:00"
+}
+{
+  "level": "warning",
+  "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
+  "time": "2026-02-25T11:19:57+03:00"
+}
+{
+  "level": "warning",
+  "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
+  "time": "2026-02-25T11:20:29+03:00"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 112,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/",
+  "request_id": "",
+  "response_size": 11676,
+  "status": 200,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/css/output.css",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/avatar.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/calendar.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/carousel.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/chart.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/checkbox.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/code.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/collapsible.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/copybutton.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/datepicker.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/dialog.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/dropdown.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/input.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/inputotp.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/label.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/popover.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/progress.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/rating.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/selectbox.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/sidebar.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/slider.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/tabs.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/tagsinput.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/textarea.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/timepicker.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/toast.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:20:53+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "level": "warning",
+  "msg": "Using default JWT secret. Set JWT_SECRET in production environments",
+  "time": "2026-02-25T11:21:06+03:00"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 48,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/auth/login",
+  "request_id": "",
+  "response_size": 13666,
+  "status": 200,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/css/output.css",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/avatar.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/calendar.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/carousel.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/chart.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/checkbox.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/code.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/collapsible.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/copybutton.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/datepicker.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/dialog.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/dropdown.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/input.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/inputotp.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/label.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/popover.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/progress.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/rating.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/selectbox.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/sidebar.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/tabs.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/slider.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/tagsinput.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/textarea.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/timepicker.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}
+{
+  "client_ip": "::1",
+  "content_type": "",
+  "latency_ms": 0,
+  "level": "info",
+  "method": "GET",
+  "msg": "Request completed",
+  "path": "/assets/js/toast.min.js",
+  "request_id": "",
+  "response_size": -1,
+  "status": 404,
+  "time": "2026-02-25T11:21:09+03:00",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+}

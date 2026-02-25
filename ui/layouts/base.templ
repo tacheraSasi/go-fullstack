@@ -1,0 +1,70 @@
+package layouts
+
+import "fmt"
+
+templ BaseLayout(title, description string) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>{ title }</title>
+			<meta name="description" content={ description }/>
+
+			<link href="/assets/css/output.css" rel="stylesheet"/>
+
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/avatar.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/calendar.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/carousel.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/chart.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/checkbox.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/code.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/collapsible.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/copybutton.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/datepicker.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/dialog.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/dropdown.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/input.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/inputotp.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/label.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/popover.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/progress.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/rating.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/selectbox.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/sidebar.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/slider.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/tabs.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/tagsinput.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/textarea.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/timepicker.min.js"></script>
+			<script defer nonce={ templ.GetNonce(ctx) } src="/assets/js/toast.min.js"></script>
+
+			<script nonce={ templ.GetNonce(ctx) } src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.4/dist/htmx.min.js"></script>
+			<meta
+				name="htmx-config"
+				content={ fmt.Sprintf(`{"inlineScriptNonce":"%s"}`, templ.GetNonce(ctx)) }
+			/>
+
+			<script nonce={ templ.GetNonce(ctx) }>
+				(function() {
+					const preference = localStorage.getItem('themePreference') || 'system';
+					let isDark = false;
+					if (preference === 'system') {
+						isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+					} else {
+						isDark = preference === 'dark';
+					}
+					if (isDark) {
+						document.documentElement.classList.add('dark');
+					}
+				})();
+			</script>
+		</head>
+		<body class="bg-background text-foreground transition-colors duration-200">
+			<div class="min-h-screen flex flex-col">
+				{ children... }
+			</div>
+		</body>
+	</html>
+}
+

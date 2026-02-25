@@ -1,12 +1,137 @@
 package pages
 
+import (
+    "github.com/tacheraSasi/go-api-starter/components/badge"
+    "github.com/tacheraSasi/go-api-starter/components/button"
+    "github.com/tacheraSasi/go-api-starter/components/card"
+    "github.com/tacheraSasi/go-api-starter/components/checkbox"
+    "github.com/tacheraSasi/go-api-starter/components/form"
+    "github.com/tacheraSasi/go-api-starter/components/icon"
+    "github.com/tacheraSasi/go-api-starter/components/input"
+    "github.com/tacheraSasi/go-api-starter/components/separator"
+    "github.com/tacheraSasi/go-api-starter/ui/layouts"
+)
+
 type LoginProps struct {
     AppName string
 }
+
 templ Login(props LoginProps) {
-    <div class="p-4">
-        <h1 class="text-2xl font-bold mb-4">Login Page</h1>
-        <p>Please enter your credentials to log in to {props.AppName}</p>
-        <!-- Add your login form here -->
-    </div>
+    @layouts.BaseLayout("Login - "+props.AppName, "Sign in to your account") {
+        <div class="min-h-screen bg-background text-foreground">
+            <div class="container mx-auto flex min-h-screen items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
+                <div class="grid w-full max-w-5xl gap-6 lg:grid-cols-2">
+                    <div class="hidden rounded-xl border bg-card p-8 shadow-xs lg:block">
+                        <div class="space-y-6">
+                            @badge.Badge(badge.Props{Variant: badge.VariantSecondary}) {
+                                Secure Authentication
+                            }
+                            <div class="space-y-3">
+                                <h1 class="text-3xl font-semibold tracking-tight">Welcome back to {props.AppName}</h1>
+                                <p class="text-sm text-muted-foreground">Sign in to manage customers, invoices, and your account settings in one place.</p>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                                    @icon.Icon("shield-check")(icon.Props{Size: 16})
+                                    <span>JWT-based protected routes</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                                    @icon.Icon("bolt")(icon.Props{Size: 16})
+                                    <span>Fast Gin + Go backend</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                                    @icon.Icon("database")(icon.Props{Size: 16})
+                                    <span>Production-ready structure</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @card.Card(card.Props{Class: "mx-auto w-full max-w-md"}) {
+                        @card.Header() {
+                            @card.Title() {
+                                Sign in
+                            }
+                            @card.Description() {
+                                Use your account credentials to continue.
+                            }
+                        }
+                        @card.Content(card.ContentProps{Class: "space-y-5"}) {
+                            <form action="/api/v1/login" method="post" class="space-y-4">
+                                @form.Item() {
+                                    @form.Label(form.LabelProps{For: "email"}) {
+                                        Email
+                                    }
+                                    @input.Input(input.Props{
+                                        ID:          "email",
+                                        Name:        "email",
+                                        Type:        input.TypeEmail,
+                                        Placeholder: "you@example.com",
+                                    })
+                                }
+
+                                @form.Item() {
+                                    <div class="flex items-center justify-between">
+                                        @form.Label(form.LabelProps{For: "password"}) {
+                                            Password
+                                        }
+                                        @button.Button(button.Props{
+                                            Href:    "/auth/register",
+                                            Variant: button.VariantLink,
+                                            Class:   "h-auto px-0 py-0 text-xs",
+                                        }) {
+                                            Need an account?
+                                        }
+                                    </div>
+                                    @input.Input(input.Props{
+                                        ID:          "password",
+                                        Name:        "password",
+                                        Type:        input.TypePassword,
+                                        Placeholder: "••••••••",
+                                    })
+                                }
+
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        @checkbox.Checkbox(checkbox.Props{ID: "remember", Name: "remember"})
+                                        @form.Label(form.LabelProps{For: "remember", Class: "text-sm font-normal text-muted-foreground"}) {
+                                            Remember me
+                                        }
+                                    </div>
+                                    @button.Button(button.Props{
+                                        Variant: button.VariantLink,
+                                        Class:   "h-auto px-0 py-0 text-xs",
+                                    }) {
+                                        Forgot password?
+                                    }
+                                </div>
+
+                                @button.Button(button.Props{
+                                    Type:      button.TypeSubmit,
+                                    FullWidth: true,
+                                }) {
+                                    Sign in
+                                }
+                            </form>
+
+                            @separator.Separator() {
+                                or
+                            }
+
+                            <div class="text-center text-sm text-muted-foreground">
+                                New here?
+                                @button.Button(button.Props{
+                                    Href:    "/auth/register",
+                                    Variant: button.VariantLink,
+                                    Class:   "h-auto px-1 py-0",
+                                }) {
+                                    Create an account
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
 }

@@ -1,11 +1,105 @@
 package pages
 
+import (
+    "github.com/tacheraSasi/go-api-starter/components/badge"
+    "github.com/tacheraSasi/go-api-starter/components/button"
+    "github.com/tacheraSasi/go-api-starter/components/card"
+    "github.com/tacheraSasi/go-api-starter/components/icon"
+    "github.com/tacheraSasi/go-api-starter/ui/layouts"
+)
+
 type HomeProps struct{
     AppName string
 }
+
 templ Home(props HomeProps) {
-    <div class="p-4">
-        <h1 class="text-2xl font-bold mb-4">Home Page</h1>
-        <p>Welcome to the {props.AppName}</p>
-    </div>
+    @layouts.BaseLayout(props.AppName, "Production-ready Go starter with auth and admin modules") {
+        <div class="min-h-screen bg-background text-foreground">
+            <main class="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-5xl space-y-10">
+                    <section class="rounded-xl border bg-card p-8 shadow-xs sm:p-10">
+                        <div class="space-y-5">
+                            @badge.Badge() {
+                                Go Fullstack Starter
+                            }
+                            <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Ship faster with {props.AppName}</h1>
+                            <p class="max-w-3xl text-sm text-muted-foreground sm:text-base">A production-ready Go + Gin backend with JWT auth, role permissions, customer and invoice modules, and clean layering for long-term maintainability.</p>
+                            <div class="flex flex-wrap items-center gap-3 pt-2">
+                                @button.Button(button.Props{Href: "/auth/login"}) {
+                                    @icon.Icon("log-in")(icon.Props{Size: 16})
+                                    <span>Login</span>
+                                }
+                                @button.Button(button.Props{Href: "/auth/register", Variant: button.VariantOutline}) {
+                                    @icon.Icon("user-plus")(icon.Props{Size: 16})
+                                    <span>Register</span>
+                                }
+                                @button.Button(button.Props{Href: "/health", Variant: button.VariantGhost}) {
+                                    Health check
+                                }
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="grid gap-4 md:grid-cols-3">
+                        @card.Card() {
+                            @card.Header() {
+                                @card.Title(card.TitleProps{Class: "flex items-center gap-2 text-base"}) {
+                                    @icon.Icon("shield-check")(icon.Props{Size: 16})
+                                    <span>Authentication</span>
+                                }
+                                @card.Description() {
+                                    JWT login, register, and token-based protected routes.
+                                }
+                            }
+                        }
+
+                        @card.Card() {
+                            @card.Header() {
+                                @card.Title(card.TitleProps{Class: "flex items-center gap-2 text-base"}) {
+                                    @icon.Icon("users")(icon.Props{Size: 16})
+                                    <span>Access Control</span>
+                                }
+                                @card.Description() {
+                                    Roles and permissions with admin-only management APIs.
+                                }
+                            }
+                        }
+
+                        @card.Card() {
+                            @card.Header() {
+                                @card.Title(card.TitleProps{Class: "flex items-center gap-2 text-base"}) {
+                                    @icon.Icon("receipt")(icon.Props{Size: 16})
+                                    <span>Business Modules</span>
+                                }
+                                @card.Description() {
+                                    Customer and invoice APIs ready to extend.
+                                }
+                            }
+                        }
+                    </section>
+
+                    <section class="rounded-xl border bg-card p-6 shadow-xs">
+                        @card.Title(card.TitleProps{Class: "mb-2 text-base"}) {
+                            Quick Links
+                        }
+                        <p class="mb-4 text-sm text-muted-foreground">Jump to common endpoints and app sections while developing.</p>
+                        <div class="flex flex-wrap gap-2">
+                            @button.Button(button.Props{Href: "/auth/login", Variant: button.VariantSecondary, Size: button.SizeSm}) {
+                                /auth/login
+                            }
+                            @button.Button(button.Props{Href: "/auth/register", Variant: button.VariantSecondary, Size: button.SizeSm}) {
+                                /auth/register
+                            }
+                            @button.Button(button.Props{Href: "/health", Variant: button.VariantOutline, Size: button.SizeSm}) {
+                                /health
+                            }
+                            @button.Button(button.Props{Href: "/health/ready", Variant: button.VariantOutline, Size: button.SizeSm}) {
+                                /health/ready
+                            }
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    }
 }

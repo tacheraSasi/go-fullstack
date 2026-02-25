@@ -1,12 +1,134 @@
 package pages
 
+import (
+    "github.com/tacheraSasi/go-api-starter/components/badge"
+    "github.com/tacheraSasi/go-api-starter/components/button"
+    "github.com/tacheraSasi/go-api-starter/components/card"
+    "github.com/tacheraSasi/go-api-starter/components/checkbox"
+    "github.com/tacheraSasi/go-api-starter/components/form"
+    "github.com/tacheraSasi/go-api-starter/components/icon"
+    "github.com/tacheraSasi/go-api-starter/components/input"
+    "github.com/tacheraSasi/go-api-starter/components/separator"
+    "github.com/tacheraSasi/go-api-starter/ui/layouts"
+)
+
 type RegisterProps struct {
     AppName string
 }
+
 templ Register(props RegisterProps) {
-    <div class="p-4">
-        <h1 class="text-2xl font-bold mb-4">Register Page</h1>
-        <p>Please enter your credentials to register for {props.AppName}</p>
-        <!-- Add your Register form here -->
-    </div>
+    @layouts.BaseLayout("Register - "+props.AppName, "Create your account") {
+        <div class="min-h-screen bg-background text-foreground">
+            <div class="container mx-auto flex min-h-screen items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
+                <div class="grid w-full max-w-5xl gap-6 lg:grid-cols-2">
+                    @card.Card(card.Props{Class: "mx-auto w-full max-w-md lg:order-2"}) {
+                        @card.Header() {
+                            @card.Title() {
+                                Create account
+                            }
+                            @card.Description() {
+                                Start using {props.AppName} in less than a minute.
+                            }
+                        }
+                        @card.Content(card.ContentProps{Class: "space-y-5"}) {
+                            <form action="/api/v1/register" method="post" class="space-y-4">
+                                @form.Item() {
+                                    @form.Label(form.LabelProps{For: "name"}) {
+                                        Full name
+                                    }
+                                    @input.Input(input.Props{
+                                        ID:          "name",
+                                        Name:        "name",
+                                        Placeholder: "John Doe",
+                                    })
+                                }
+
+                                @form.Item() {
+                                    @form.Label(form.LabelProps{For: "email"}) {
+                                        Email
+                                    }
+                                    @input.Input(input.Props{
+                                        ID:          "email",
+                                        Name:        "email",
+                                        Type:        input.TypeEmail,
+                                        Placeholder: "you@example.com",
+                                    })
+                                }
+
+                                @form.Item() {
+                                    @form.Label(form.LabelProps{For: "password"}) {
+                                        Password
+                                    }
+                                    @input.Input(input.Props{
+                                        ID:          "password",
+                                        Name:        "password",
+                                        Type:        input.TypePassword,
+                                        Placeholder: "Create a secure password",
+                                    })
+                                    @form.Description() {
+                                        Use at least 8 characters.
+                                    }
+                                }
+
+                                <div class="flex items-start gap-2 rounded-md border p-3">
+                                    @checkbox.Checkbox(checkbox.Props{ID: "terms", Name: "terms"})
+                                    @form.Label(form.LabelProps{For: "terms", Class: "text-sm font-normal leading-5 text-muted-foreground"}) {
+                                        I agree to the Terms of Service and Privacy Policy.
+                                    }
+                                </div>
+
+                                @button.Button(button.Props{
+                                    Type:      button.TypeSubmit,
+                                    FullWidth: true,
+                                }) {
+                                    Create account
+                                }
+                            </form>
+
+                            @separator.Separator() {
+                                or
+                            }
+
+                            <div class="text-center text-sm text-muted-foreground">
+                                Already registered?
+                                @button.Button(button.Props{
+                                    Href:    "/auth/login",
+                                    Variant: button.VariantLink,
+                                    Class:   "h-auto px-1 py-0",
+                                }) {
+                                    Sign in
+                                }
+                            </div>
+                        }
+                    }
+
+                    <div class="hidden rounded-xl border bg-card p-8 shadow-xs lg:block lg:order-1">
+                        <div class="space-y-6">
+                            @badge.Badge(badge.Props{Variant: badge.VariantOutline}) {
+                                Fast Setup
+                            }
+                            <div class="space-y-3">
+                                <h1 class="text-3xl font-semibold tracking-tight">Build faster with {props.AppName}</h1>
+                                <p class="text-sm text-muted-foreground">Register once and manage users, customers, invoices, and permissions from a single backend.</p>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                                    @icon.Icon("user-plus")(icon.Props{Size: 16})
+                                    <span>Simple onboarding flow</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                                    @icon.Icon("lock-keyhole")(icon.Props{Size: 16})
+                                    <span>Secure auth and role-based access</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                                    @icon.Icon("cpu")(icon.Props{Size: 16})
+                                    <span>Clean project structure for scaling</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 }

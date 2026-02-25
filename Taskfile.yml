@@ -9,7 +9,7 @@ tasks:
     desc: Run templ with integrated server and hot reload
     cmds:
       - templ generate --watch --proxy="http://localhost:8090" --cmd="go run ./cmd/api/main.go" --open-browser=false
-
+no taile
   tailwind:
     desc: Watch Tailwind CSS changes
     cmds:
