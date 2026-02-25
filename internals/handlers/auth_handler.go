@@ -5,6 +5,7 @@ import (
 	"log"
 	"strings"
 
+	"github.com/a-h/templ"
 	"github.com/gin-gonic/gin"
 	"github.com/tacheraSasi/go-api-starter/internals/config"
 	"github.com/tacheraSasi/go-api-starter/internals/dtos"
@@ -12,6 +13,7 @@ import (
 	"github.com/tacheraSasi/go-api-starter/internals/services"
 	"github.com/tacheraSasi/go-api-starter/pkg/jwt"
 	"github.com/tacheraSasi/go-api-starter/pkg/styles"
+	"github.com/tacheraSasi/go-api-starter/ui/pages"
 )
 
 type AuthHandler struct {
@@ -26,15 +28,6 @@ func NewAuthHandler(service services.AuthService, cfg *config.Config) *AuthHandl
 	}
 }
 
-func (h *AuthHandler) RegisterWebRoutes(router *gin.Engine) {
-	authGroup := router.Group("/auth")
-	{
-		authGroup.POST("/register", h.Register)
-		authGroup.POST("/login", h.Login)
-		authGroup.POST("/logout", h.Logout)
-	}
-}
-
 // ValidateRequest validates the request body against the provided struct
 func (h *AuthHandler) ValidateRequest(c *gin.Context, obj any) {
 	dtos.Validate(c, obj)
@@ -44,6 +37,21 @@ func (h *AuthHandler) HealthCheck(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"status": "ok",
 	})
+}
+
+func (h *AuthHandler) RegisterWebRoutes(router *gin.Engine) {
+	authGroup := router.Group("/auth")
+	{
+		authGroup.POST("/register", h.RegisterPage)
+		authGroup.POST("/login", h.LoginPage)
+		authGroup.POST("/logout", h.Logout)
+	}
+}
+func (h *AuthHandler) RegisterPage(c *gin.Context) {
+	templ.Handler(pages.Register(pages.RegisterProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
+}
+func (h *AuthHandler) LoginPage(c *gin.Context) {
+	templ.Handler(pages.Login(pages.LoginProps{AppName: "Go API Starter"})).ServeHTTP(c.Writer, c.Request)
 }
 
 func (h *AuthHandler) Register(c *gin.Context) {
@@ -91,7 +99,7 @@ func (h *AuthHandler) Login(c *gin.Context) {
 	var requestBody = c.Request.Body
 	defer requestBody.Close()
 	h.ValidateRequest(c, &reqDto)
-	if c.IsAborted(){
+	if c.IsAborted() {
 		return
 	}
 	bodyBytes, err := io.ReadAll(requestBody)
