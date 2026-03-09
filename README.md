@@ -2,6 +2,12 @@
 
 Production-ready fullstack Go application built with **Gin + GORM + Templ + Alpine.js + Tailwind CSS**. Includes JWT auth, user dashboard, RBAC, customer/invoice modules, and Docker support.
 
+## Screenshots
+
+![Login - GO-FullStack](assets/Login%20-%20GO-FullStack.jpeg)
+
+![Dashboard - GO-FullStack](assets/Dashboard%20-%20GO-FullStack.jpeg)
+
 ## Features
 
 **Backend**
