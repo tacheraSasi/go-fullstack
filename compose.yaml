@@ -48,13 +48,6 @@ services:
       - app-network
     restart: unless-stopped
 
-volumes:
-  postgres_data:
-
-networks:
-  app-network:
-    driver: bridge
-
   # Nginx reverse proxy (optional)
   nginx:
     image: nginx:alpine
@@ -70,12 +63,8 @@ networks:
 
 volumes:
   postgres_data:
-  redis_data:
 
 networks:
   app-network:
     driver: bridge
-# Development override
-# Use: docker-compose -f compose.yaml -f compose.dev.yaml up
-# For development with hot reload and additional tools
 
