@@ -15,7 +15,7 @@ services:
     volumes:
       - .:/app
       - /app/bin
-    command: go run ./cmd/api/main.go
+    command: go run ./cmd/app/main.go
     ports:
       - "8080:8080"
       - "2345:2345"

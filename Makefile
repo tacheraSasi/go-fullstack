@@ -28,7 +28,7 @@ help:
 # Development mode
 dev:
 	@echo "Starting development server..."
-	go run ./cmd/api/main.go
+	go run ./cmd/app/main.go
 
 # Install/update dependencies
 deps:
@@ -40,7 +40,7 @@ deps:
 build:
 	@echo "Building $(APP_NAME)..."
 	@mkdir -p bin
-	go build -ldflags="-w -s" -o $(BINARY_NAME) ./cmd/api/main.go
+	go build -ldflags="-w -s" -o $(BINARY_NAME) ./cmd/app/main.go
 
 # Build and run
 run: build

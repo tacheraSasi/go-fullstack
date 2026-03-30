@@ -21,4 +21,4 @@ RUN mkdir -p logs data bin
 # Expose app and debugger ports
 EXPOSE 8080 2345
 
-CMD ["go", "run", "./cmd/api/main.go"]
+CMD ["go", "run", "./cmd/app/main.go"]
