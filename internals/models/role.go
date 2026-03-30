@@ -66,10 +66,8 @@ const (
 
 // Common resources
 const (
-	ResourceUser     = "user"
-	ResourceCustomer = "customer"
-	ResourceInvoice  = "invoice"
-	ResourceRole     = "role"
+	ResourceUser = "user"
+	ResourceRole = "role"
 	ResourceSystem   = "system"
 )
 

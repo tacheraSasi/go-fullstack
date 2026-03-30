@@ -562,7 +562,7 @@ func Register(props RegisterProps) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "</h1><p class=\"text-sm text-muted-foreground\">Register once and manage users, customers, invoices, and permissions from a single backend.</p></div><div class=\"space-y-3\"><div class=\"flex items-center gap-2 text-sm text-muted-foreground\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "</h1><p class=\"text-sm text-muted-foreground\">Register once and manage users and permissions from a single backend.</p></div><div class=\"space-y-3\"><div class=\"flex items-center gap-2 text-sm text-muted-foreground\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

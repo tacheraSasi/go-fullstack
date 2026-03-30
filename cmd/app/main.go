@@ -67,10 +67,7 @@ func main() {
 		&models.Permission{},
 		&models.UserRole{},
 		&models.RolePermission{},
-		&models.Customer{},
-		&models.Invoice{},
-		&models.InvoiceItem{},
-		&models.BlacklistedToken{},
+		&models.BlacklistedToken{}
 		&models.PasswordResetToken{},
 	)
 	if err != nil {
@@ -81,8 +78,6 @@ func main() {
 	userRepo := repositories.NewUserRepository(database.GetDB())
 	roleRepo := repositories.NewRoleRepository(database.GetDB())
 	permissionRepo := repositories.NewPermissionRepository(database.GetDB())
-	customerRepo := repositories.NewCustomerRepository(database.GetDB())
-	invoiceRepo := repositories.NewInvoiceRepository(database.GetDB())
 	tokenRepo := repositories.NewTokenRepository(database.GetDB())
 
 	// services
@@ -91,8 +86,6 @@ func main() {
 	userService := services.NewUserService(userRepo, roleRepo)
 	tokenService := services.NewTokenService(tokenRepo)
 	authService := services.NewAuthService(userRepo, tokenService)
-	customerService := services.NewCustomerService(customerRepo)
-	invoiceService := services.NewInvoiceService(invoiceRepo)
 
 	// Initialize default roles and permissions
 	if err := permissionService.InitializeDefaultPermissions(); err != nil {
@@ -108,8 +101,6 @@ func main() {
 	userHandler := handlers.NewUserHandler(userService)
 	roleHandler := handlers.NewRoleHandler(roleService)
 	permissionHandler := handlers.NewPermissionHandler(permissionService)
-	customerHandler := handlers.NewCustomerHandler(customerService)
-	invoiceHandler := handlers.NewInvoiceHandler(invoiceService)
 
 	// Setup router
 	r := gin.New()
@@ -153,20 +144,6 @@ func main() {
 		protected.PUT("/users/:id/password", userHandler.UpdateUserPassword)
 		protected.GET("/users/:id/roles", userHandler.GetUserRoles)
 		protected.GET("/users/:id/permissions/:resource/:action", userHandler.CheckUserPermission)
-
-		// Customer routes
-		protected.GET("/customers", customerHandler.ListCustomers)
-		protected.GET("/customers/:id", customerHandler.GetCustomer)
-		protected.POST("/customers", customerHandler.CreateCustomer)
-		protected.PUT("/customers/:id", customerHandler.UpdateCustomer)
-		protected.DELETE("/customers/:id", customerHandler.DeleteCustomer)
-
-		// Invoice routes
-		protected.GET("/invoices", invoiceHandler.ListInvoices)
-		protected.GET("/invoices/:id", invoiceHandler.GetInvoice)
-		protected.POST("/invoices", invoiceHandler.CreateInvoice)
-		protected.PUT("/invoices/:id", invoiceHandler.UpdateInvoice)
-		protected.DELETE("/invoices/:id", invoiceHandler.DeleteInvoice)
 	}
 
 	// Admin routes

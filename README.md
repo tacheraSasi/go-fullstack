@@ -1,6 +1,6 @@
 # GO-FullStack
 
-Production-ready fullstack Go application built with **Gin + GORM + Templ + Alpine.js + Tailwind CSS**. Includes JWT auth, user dashboard, RBAC, customer/invoice modules, and Docker support.
+Production-ready fullstack Go starter kit built with **Gin + GORM + Templ + Alpine.js + Tailwind CSS**. Includes JWT auth, user dashboard, RBAC, and Docker support.
 
 ## Screenshots
 
@@ -15,7 +15,6 @@ Production-ready fullstack Go application built with **Gin + GORM + Templ + Alpi
 - Gin HTTP API with clean repository → service → handler layering
 - JWT authentication (login, register, forgot/reset password, logout)
 - Role-based access control (users, roles, permissions)
-- Customer and invoice CRUD modules
 - SQLite / Postgres / MySQL support via GORM
 - Structured logging with Logrus
 - Health and readiness endpoints
@@ -111,14 +110,14 @@ make docker-down    # Stop docker-compose
 
 ```
 cmd/
-  api/            → Application entrypoint
+  app/            → Application entrypoint
   seed/           → Database seeder
 internals/
   config/         → Environment configuration
   dtos/           → Request/response DTOs with validation
   handlers/       → HTTP handlers (controllers)
   middlewares/    → Auth, CORS, logging, admin middleware
-  models/         → GORM models (User, Role, Permission, Customer, Invoice, etc.)
+  models/         → GORM models (User, Role, Permission, etc.)
   repositories/   → Data access layer
   services/       → Business logic layer
   utils/          → Response helpers
@@ -144,8 +143,6 @@ Base path: `/api/v1`
 | --------- | ------------------------------------------------------------------------------------------- | ----------- |
 | Public    | `POST /login`, `POST /register`, `POST /forgot-password`, `POST /reset-password`            | None        |
 | Protected | `POST /logout`, `GET/PUT /users/:id`, `PUT /users/:id/password`, `GET /users/:id/roles`     | JWT         |
-| Protected | `GET/POST /customers`, `GET/PUT/DELETE /customers/:id`                                      | JWT         |
-| Protected | `GET/POST /invoices`, `GET/PUT/DELETE /invoices/:id`                                        | JWT         |
 | Admin     | `GET /admin/users`, `DELETE /admin/users/:id`, `POST/DELETE /admin/users/:id/roles/:roleId` | JWT + Admin |
 | Admin     | CRUD `/admin/roles/*`, `/admin/permissions/*`                                               | JWT + Admin |
 

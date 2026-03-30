@@ -23,7 +23,7 @@ templ Home(props HomeProps) {
                                 Go Fullstack Starter
                             }
                             <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Ship faster with {props.AppName}</h1>
-                            <p class="max-w-3xl text-sm text-muted-foreground sm:text-base">A production-ready Go + Gin backend with JWT auth, role permissions, customer and invoice modules, and clean layering for long-term maintainability.</p>
+                            <p class="max-w-3xl text-sm text-muted-foreground sm:text-base">A production-ready Go + Gin fullstack starter kit with JWT auth, role permissions, and clean layering for long-term maintainability.</p>
                             <div class="flex flex-wrap items-center gap-3 pt-2">
                                 @button.Button(button.Props{Href: "/auth/login"}) {
                                     @icon.Icon("log-in")(icon.Props{Size: 16})
@@ -72,7 +72,7 @@ templ Home(props HomeProps) {
                                     <span>Business Modules</span>
                                 }
                                 @card.Description() {
-                                    Customer and invoice APIs ready to extend.
+                                    Ready-to-extend API structure with clean layering.
                                 }
                             }
                         }

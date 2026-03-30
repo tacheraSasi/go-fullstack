@@ -92,7 +92,7 @@ func Home(props HomeProps) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</h1><p class=\"max-w-3xl text-sm text-muted-foreground sm:text-base\">A production-ready Go + Gin backend with JWT auth, role permissions, customer and invoice modules, and clean layering for long-term maintainability.</p><div class=\"flex flex-wrap items-center gap-3 pt-2\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</h1><p class=\"max-w-3xl text-sm text-muted-foreground sm:text-base\">A production-ready Go + Gin fullstack starter kit with JWT auth, role permissions, and clean layering for long-term maintainability.</p><div class=\"flex flex-wrap items-center gap-3 pt-2\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -416,7 +416,7 @@ func Home(props HomeProps) templ.Component {
 							}()
 						}
 						ctx = templ.InitializeContext(ctx)
-						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "Customer and invoice APIs ready to extend.")
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "Ready-to-extend API structure with clean layering.")
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
