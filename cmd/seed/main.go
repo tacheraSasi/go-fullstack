@@ -33,7 +33,7 @@ func main() {
 		&models.Permission{},
 		&models.UserRole{},
 		&models.RolePermission{},
-		&models.BlacklistedToken{}
+		&models.BlacklistedToken{},
 		&models.PasswordResetToken{},
 	)
 	if err != nil {

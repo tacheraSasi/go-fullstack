@@ -66,9 +66,9 @@ const (
 
 // Common resources
 const (
-	ResourceUser = "user"
-	ResourceRole = "role"
-	ResourceSystem   = "system"
+	ResourceUser   = "user"
+	ResourceRole   = "role"
+	ResourceSystem = "system"
 )
 
 // Common roles
